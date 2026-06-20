@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roma - August 2025</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --terra:#c0392b;--gold:#c9a227;--gold-l:#fdf3d8;--cream:#faf7f2;
+  --stone:#ede8e0;--ink:#1a1510;--muted:#7a6f63;--white:#fff;
+  --eat:#c0392b;--drink:#7d3c98;--visit:#1a6faa;--hotel:#1e8449;
+  --jazz:#d35400;--street:#b7770d;--rec:#0e6655;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:"DM Sans",sans-serif;background:var(--cream);color:var(--ink);}
+.hdr{background:var(--terra);position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(192,57,43,.3);}
+.hdr-top{display:flex;align-items:center;justify-content:space-between;padding:12px 16px 8px;}
+.htitle{font-family:"Cormorant Garamond",serif;font-size:22px;font-weight:600;color:#fff;}
+.htitle span{font-weight:300;font-style:italic;font-size:14px;opacity:.85;display:block;margin-top:-2px;}
+.hbadge{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);color:#fff;font-size:11px;padding:4px 10px;border-radius:16px;text-align:right;line-height:1.5;}
+.hbadge strong{display:block;font-size:13px;}
+.ntabs{display:flex;border-top:1px solid rgba(255,255,255,.2);}
+.ntab{flex:1;text-align:center;padding:8px 2px 7px;font-size:10px;color:rgba(255,255,255,.65);cursor:pointer;border-bottom:2px solid transparent;font-weight:500;letter-spacing:.04em;text-transform:uppercase;}
+.ntab.active{color:#fff;border-bottom-color:var(--gold);}
+.panel{display:none;padding:0 0 80px;}
+.panel.active{display:block;}
+/* DAY HEADERS */
+.day-hdr{background:var(--ink);color:#fff;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:97px;z-index:9;}
+.day-hdr h2{font-family:"Cormorant Garamond",serif;font-size:17px;font-weight:400;font-style:italic;}
+.day-hdr .dsub{font-size:11px;color:rgba(255,255,255,.55);margin-top:1px;}
+.dbadge{background:var(--gold);color:var(--ink);font-size:10px;font-weight:500;padding:3px 8px;border-radius:10px;}
+.items{padding:10px 14px;display:flex;flex-direction:column;gap:7px;}
+/* ITEM CARDS */
+.ic{background:var(--white);border-radius:10px;border:.5px solid rgba(26,21,16,.1);overflow:hidden;cursor:pointer;}
+.ic:hover{box-shadow:0 2px 14px rgba(26,21,16,.1);}
+.ic-inner{display:flex;align-items:stretch;}
+.stripe{width:4px;flex-shrink:0;}
+.iicon{width:42px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;}
+.ibody{flex:1;padding:9px 10px 9px 0;}
+.itime{font-size:10px;font-weight:500;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:1px;}
+.iname{font-size:14px;font-weight:500;color:var(--ink);line-height:1.3;}
+.idesc{font-size:12px;color:var(--muted);margin-top:2px;line-height:1.4;}
+.itags{display:flex;gap:4px;flex-wrap:wrap;margin-top:5px;}
+.tag{font-size:10px;padding:2px 7px;border-radius:8px;font-weight:500;}
+.t-book{background:#fdecea;color:#c0392b;}
+.t-tip{background:#fef9e7;color:#9a7d0a;}
+.t-walk{background:#e8f4f8;color:#1a6f8a;}
+.t-free{background:#eafaf1;color:#1e8449;}
+.t-eve{background:#f0e6f6;color:#7d3c98;}
+.t-rec{background:#e0f4f0;color:#0e6655;}
+.iact{display:flex;align-items:center;padding-right:10px;}
+.chev{font-size:16px;color:#ccc;}
+.idetail{display:none;padding:0 12px 12px 44px;border-top:.5px solid var(--stone);background:#fdfcfa;}
+.idetail.open{display:block;}
+.dnote{font-size:12px;color:var(--muted);line-height:1.6;padding-top:9px;}
+.dnote strong{color:var(--ink);}
+.dlink{display:inline-flex;align-items:center;gap:4px;font-size:12px;color:var(--terra);text-decoration:none;margin-top:7px;font-weight:500;}
+/* CHOICE BLOCKS */
+.cblock{margin:8px 14px;background:var(--white);border-radius:10px;border:.5px solid rgba(26,21,16,.1);overflow:hidden;}
+.chdr{background:#1a4a3a;color:#fff;padding:8px 14px;font-size:12px;font-weight:500;display:flex;align-items:center;gap:6px;}
+.chdr span{background:rgba(255,255,255,.2);border-radius:10px;padding:1px 7px;font-size:10px;}
+.copt{padding:10px 14px;border-bottom:.5px solid var(--stone);cursor:pointer;}
+.copt:last-child{border-bottom:none;}
+.copt:hover{background:#f5faf8;}
+.copt.selected{background:#f0faf5;border-left:3px solid var(--rec);}
+.co-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;}
+.co-name{font-size:13px;font-weight:500;color:var(--ink);}
+.copt.selected .co-name{color:var(--rec);}
+.co-badge{font-size:10px;padding:2px 7px;border-radius:8px;font-weight:500;white-space:nowrap;flex-shrink:0;}
+.co-yours{background:#e8f4fb;color:#1a6faa;}
+.co-new{background:#e0f4f0;color:#0e6655;}
+.co-splurge{background:#fff3cd;color:#856404;}
+.co-meta{font-size:11px;color:var(--muted);margin-top:2px;line-height:1.4;}
+.co-detail{display:none;font-size:11px;color:var(--muted);line-height:1.5;margin-top:6px;padding-top:6px;border-top:.5px solid var(--stone);}
+.co-detail.open{display:block;}
+/* CONNECTOR */
+.conn{display:flex;align-items:center;gap:8px;padding:3px 14px 3px 22px;}
+.cline{width:1px;height:16px;background:var(--stone);margin-left:14px;}
+.ctxt{font-size:11px;color:var(--muted);}
+/* SIESTA */
+.siesta{margin:8px 14px;background:var(--gold-l);border-radius:10px;border:.5px solid rgba(201,162,39,.4);overflow:hidden;}
+.siesta-hdr{background:var(--gold);padding:8px 14px;display:flex;align-items:center;justify-content:space-between;}
+.siesta-hdr span{font-size:12px;font-weight:500;color:var(--ink);}
+.siesta-hdr small{font-size:10px;color:var(--ink);opacity:.7;}
+.siesta-body{padding:10px 14px;font-size:12px;color:#5d4a0a;line-height:1.6;}
+/* ALERT BOXES */
+.alert-red{margin:8px 14px;background:#fef2f2;border-radius:10px;border:.5px solid rgba(192,57,43,.25);padding:10px 14px;}
+.alert-red-title{font-size:11px;font-weight:500;color:var(--terra);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px;}
+.alert-red-body{font-size:12px;color:#7a3030;line-height:1.6;}
+.alert-blue{margin:8px 14px;background:#e8f4f8;border-radius:10px;border:.5px solid #b3d9eb;padding:10px 14px;}
+.alert-blue-title{font-size:11px;font-weight:500;color:#1a4a6b;margin-bottom:4px;}
+.alert-blue-body{font-size:12px;color:#1a4a6b;line-height:1.6;}
+/* PLACES */
+.filter-bar{display:flex;gap:6px;padding:10px 14px;overflow-x:auto;border-bottom:.5px solid var(--stone);background:var(--white);}
+.fbtn{border:.5px solid var(--stone);border-radius:20px;padding:4px 12px;font-size:12px;cursor:pointer;color:var(--ink);background:var(--white);font-family:"DM Sans",sans-serif;white-space:nowrap;}
+.fbtn.active{background:var(--terra);border-color:var(--terra);color:#fff;}
+.pg-title{font-family:"Cormorant Garamond",serif;font-size:17px;font-weight:600;color:var(--ink);margin:14px 14px 8px;padding-bottom:5px;border-bottom:1px solid var(--stone);}
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:7px;padding:0 14px 6px;}
+.pm{background:var(--white);border-radius:10px;border:.5px solid rgba(26,21,16,.1);padding:9px;cursor:pointer;}
+.pm:hover{box-shadow:0 2px 10px rgba(26,21,16,.09);}
+.pm-cat{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px;}
+.pm-name{font-size:13px;font-weight:500;color:var(--ink);line-height:1.3;}
+.pm-addr{font-size:11px;color:var(--muted);margin-top:2px;line-height:1.3;}
+.pm-dot{width:7px;height:7px;border-radius:50%;display:inline-block;margin-right:3px;vertical-align:1px;}
+/* NOTES */
+.notes-area{width:100%;min-height:80px;border:.5px solid var(--stone);border-radius:8px;padding:8px 10px;font-family:"DM Sans",sans-serif;font-size:13px;color:var(--ink);background:#fffef9;resize:vertical;margin-top:6px;}
+.notes-area:focus{outline:none;border-color:var(--gold);}
+.note-card{background:var(--white);border-radius:10px;border:.5px solid rgba(26,21,16,.1);padding:12px 14px;margin-bottom:8px;}
+.note-label{font-size:11px;font-weight:500;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px;}
+/* BUDGET */
+.budget-ctrl{background:var(--white);border-radius:10px;border:.5px solid rgba(26,21,16,.1);padding:12px 14px;margin-bottom:10px;}
+.budget-ctrl label{font-size:12px;color:var(--muted);display:block;margin-bottom:4px;}
+.budget-ctrl select{width:100%;font-family:"DM Sans",sans-serif;font-size:13px;padding:4px;border:.5px solid var(--stone);border-radius:6px;}
+.brange{display:flex;align-items:center;gap:10px;}
+.brange input{flex:1;}
+.brange span{font-size:13px;font-weight:500;min-width:60px;}
+.budget-result{background:var(--terra);color:#fff;border-radius:10px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.brtotal{font-family:"Cormorant Garamond",serif;font-size:28px;font-weight:400;}
+.budget-table{width:100%;border-collapse:collapse;}
+/* TIPS */
+.tips{padding:14px;}
+.tcard{background:var(--white);border-radius:10px;border:.5px solid rgba(26,21,16,.1);padding:13px;margin-bottom:10px;}
+.tcard h3{font-family:"Cormorant Garamond",serif;font-size:16px;font-weight:600;color:var(--ink);margin-bottom:7px;}
+.tcard li,.tcard p{font-size:13px;color:var(--muted);line-height:1.6;}
+.tcard ul{padding-left:15px;}
+.tcard li{margin-bottom:3px;}
+.thighlight{background:var(--gold-l);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:9px 13px;margin:8px 0;font-size:12px;color:#5d4a0a;line-height:1.5;}
+.flight-c{background:var(--terra);color:#fff;border-radius:12px;padding:13px 15px;margin-bottom:9px;display:flex;justify-content:space-between;align-items:center;}
+.fi h3{font-family:"Cormorant Garamond",serif;font-size:16px;font-weight:600;margin-bottom:3px;color:#fff;}
+.fi p{font-size:12px;opacity:.85;}
+.ft{text-align:right;font-family:"Cormorant Garamond",serif;font-size:24px;font-weight:300;color:#fff;}
+.ft small{font-size:11px;display:block;opacity:.75;font-family:"DM Sans",sans-serif;}
+/* BOTTOM */
+.fixed-btm{position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:.5px solid var(--stone);padding:8px 14px 14px;display:flex;gap:6px;z-index:100;}
+.btn-p{flex:1;background:var(--terra);color:#fff;border:none;border-radius:9px;padding:10px 10px;font-size:12px;font-weight:500;cursor:pointer;font-family:"DM Sans",sans-serif;}
+.btn-s{background:transparent;color:var(--terra);border:1px solid var(--terra);border-radius:9px;padding:10px 10px;font-size:12px;font-weight:500;cursor:pointer;font-family:"DM Sans",sans-serif;}
+/* LEGEND */
+.legend{display:flex;gap:10px;flex-wrap:wrap;padding:9px 14px;background:var(--white);border-bottom:.5px solid var(--stone);}
+.li{display:flex;align-items:center;gap:4px;font-size:11px;color:var(--muted);}
+.ldot{width:7px;height:7px;border-radius:50%;}
+/* TOAST */
+.toast{position:fixed;bottom:78px;left:50%;transform:translateX(-50%) translateY(16px);background:var(--ink);color:#fff;padding:8px 16px;border-radius:18px;font-size:12px;opacity:0;transition:all .3s;z-index:999;white-space:nowrap;max-width:280px;text-align:center;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+/* GRID TIMETABLE */
+.timetable{width:100%;border-collapse:collapse;font-size:12px;}
+.timetable td{padding:6px 10px;border-bottom:.5px solid var(--stone);vertical-align:top;}
+.timetable .time-col{color:var(--terra);font-weight:500;width:50px;white-space:nowrap;}
+.timetable .place-col{color:var(--ink);}
+.timetable .note-col{color:var(--muted);font-size:11px;}
+/* OVERVIEW */
+#overview-content{padding:14px;}
+#saved-badge{font-size:11px;color:var(--rec);font-weight:500;padding:0 14px 4px;display:block;}
+@media print{
+  .hdr,.fixed-btm,.filter-bar,.ntabs{display:none!important;}
+  .panel{display:block!important;padding-bottom:0!important;}
+  .day-hdr{position:static;}
+  .idetail,.co-detail{display:block!important;}
+  .day-section{page-break-before:always;}
+  .day-section:first-child{page-break-before:auto;}
+}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="hdr-top">
+    <div class="htitle">Roma <span>Anniversary &middot; August 2025</span></div>
+    <div class="hbadge"><strong>19&ndash;22 Aug</strong>Prati District</div>
+  </div>
+  <div class="ntabs">
+    <div class="ntab active" onclick="showTab('overview')">Overview</div>
+    <div class="ntab" onclick="showTab('itinerary')">Days</div>
+    <div class="ntab" onclick="showTab('places')">Places</div>
+    <div class="ntab" onclick="showTab('budget')">Budget</div>
+    <div class="ntab" onclick="showTab('tips')">Tips</div>
+  </div>
+</div>
+
+<!-- ===== OVERVIEW ===== -->
+<div id="panel-overview" class="panel active">
+  <div style="background:var(--terra);color:#fff;padding:12px 16px;">
+    <div style="font-family:Cormorant Garamond,serif;font-size:20px;font-weight:600;margin-bottom:2px;">Roma &mdash; at a glance</div>
+    <div style="font-size:12px;opacity:.85;">Your full trip &middot; tap Days tab for detail</div>
+  </div>
+  <span id="saved-badge"></span>
+  <div id="overview-content"></div>
+  <div style="margin:0 14px 10px;background:var(--white);border-radius:10px;border:.5px solid rgba(26,21,16,.1);overflow:hidden;">
+    <div style="background:var(--ink);padding:9px 14px;"><span style="font-family:Cormorant Garamond,serif;font-size:15px;color:#fff;font-weight:600;">Key addresses &amp; numbers</span></div>
+    <div style="padding:10px 14px;font-size:12px;">
+      <div style="display:flex;justify-content:space-between;border-bottom:.5px solid var(--stone);padding-bottom:5px;margin-bottom:5px;"><span style="color:var(--muted);">Hotel</span><span style="color:var(--terra);cursor:pointer;" onclick="openMaps('Via degli Scipioni 286 Rome')">Via degli Scipioni, 286</span></div>
+      <div style="display:flex;justify-content:space-between;border-bottom:.5px solid var(--stone);padding-bottom:5px;margin-bottom:5px;"><span style="color:var(--muted);">Metro station</span><span>Lepanto (Line A)</span></div>
+      <div style="display:flex;justify-content:space-between;border-bottom:.5px solid var(--stone);padding-bottom:5px;margin-bottom:5px;"><span style="color:var(--muted);">Airport train</span><span>Fiumicino to Termini &middot; 14pp</span></div>
+      <div style="display:flex;justify-content:space-between;border-bottom:.5px solid var(--stone);padding-bottom:5px;margin-bottom:5px;"><span style="color:var(--muted);">24hr pharmacy</span><span style="color:var(--terra);cursor:pointer;" onclick="openMaps('Farmacia Cola di Rienzo 213 Rome')">Via Cola di Rienzo, 213</span></div>
+      <div style="display:flex;justify-content:space-between;border-bottom:.5px solid var(--stone);padding-bottom:5px;margin-bottom:5px;"><span style="color:var(--muted);">Emergency</span><span><strong>112</strong> &middot; Medical: <strong>118</strong></span></div>
+      <div style="display:flex;justify-content:space-between;border-bottom:.5px solid var(--stone);padding-bottom:5px;margin-bottom:5px;"><span style="color:var(--muted);">Nearest A&amp;E</span><span style="color:var(--terra);cursor:pointer;" onclick="openMaps('Ospedale Santo Spirito Rome')">Ospedale Santo Spirito</span></div>
+      <div style="display:flex;justify-content:space-between;"><span style="color:var(--muted);">Weather forecast</span><span><a href="https://www.bbc.co.uk/weather/3169070" target="_blank" style="color:var(--terra);">BBC Rome forecast</a></span></div>
+    </div>
+  </div>
+  <div style="padding:0 14px 14px;display:flex;gap:8px;">
+    <button class="btn-p" onclick="showTab('itinerary')">Full itinerary</button>
+    <button class="btn-s" onclick="showTab('budget')">Budget planner</button>
+  </div>
+</div>
+
+<!-- ===== ITINERARY ===== -->
+<div id="panel-itinerary" class="panel">
+<div class="legend">
+  <div class="li"><div class="ldot" style="background:var(--hotel)"></div>Base</div>
+  <div class="li"><div class="ldot" style="background:var(--visit)"></div>Sightseeing</div>
+  <div class="li"><div class="ldot" style="background:var(--eat)"></div>Eat</div>
+  <div class="li"><div class="ldot" style="background:var(--drink)"></div>Drink</div>
+  <div class="li"><div class="ldot" style="background:var(--jazz)"></div>Jazz</div>
+  <div class="li"><div class="ldot" style="background:var(--street)"></div>Street food</div>
+  <div class="li"><div class="ldot" style="background:var(--rec)"></div>Recommended</div>
+</div>
+
+<!-- TUE 19 -->
+<div class="day-section">
+<div class="day-hdr"><div><h2>Tuesday 19 August</h2><div class="dsub">Arrival day &middot; Evening only</div></div><div class="dbadge">Day 1</div></div>
+<div class="items">
+  <div class="ic" onclick="toggleDetail(this)">
+    <div class="ic-inner"><div class="stripe" style="background:var(--hotel)"></div><div class="iicon">&#9992;</div>
+    <div class="ibody"><div class="itime">16:35 depart</div><div class="iname">Flight MAN to FCO</div><div class="idesc">Land Rome Fiumicino 20:20</div><div class="itags"><span class="tag t-tip">Leonardo Express to Termini ~32 min</span></div></div>
+    <div class="iact"><span class="chev">&#8250;</span></div></div>
+    <div class="idetail"><div class="dnote">Leonardo Express from Fiumicino airport to Roma Termini runs every 30 mins (14pp, ~32 min). From Termini take Metro Line A to Lepanto (~15 min). Expect to reach the hotel around 22:00. Buy your metro tickets at Termini before boarding.</div></div>
+  </div>
+</div>
+<div class="alert-red">
+  <div class="alert-red-title">You will be hungry &mdash; eat at Termini on the way</div>
+  <div class="alert-red-body">You land at 20:20 and transfer takes ~90 mins. By the time you reach the hotel it is 22:00. <strong>Mercato Centrale Roma</strong> inside Termini station is excellent &mdash; multiple food stalls, sit-down tables, open until midnight. Grab dinner there before your final metro hop. Or pick up supplies at the Carrefour in Termini (open late). Once in Prati, Sorpasso and Passaguai both serve food until late.</div>
+</div>
+<div class="items">
+  <div class="ic" onclick="toggleDetail(this)">
+    <div class="ic-inner"><div class="stripe" style="background:var(--hotel)"></div><div class="iicon">&#127968;</div>
+    <div class="ibody"><div class="itime">~22:00 check in</div><div class="iname">Hotel &mdash; Via degli Scipioni</div><div class="idesc">Via degli Scipioni, 286 &middot; Prati &middot; Metro: Lepanto</div><div class="itags"><span class="tag t-walk">5 min walk from Lepanto station</span></div></div>
+    <div class="iact"><span class="chev">&#8250;</span></div></div>
+    <div class="idetail"><div class="dnote">Prati is calm, elegant and residential &mdash; Rome's best-kept local secret. Walkable to the Vatican and Castel Sant Angelo. Via Cola di Rienzo is a 2-minute walk for morning pastries, shopping, and the 24hr pharmacy.</div></div>
+  </div>
+</div>
+<div class="cblock">
+  <div class="chdr">Arrival night drink <span>Pick one</span></div>
+  <div class="copt" onclick="toggleChoice(this)">
+    <div class="co-top"><div class="co-name">Sorpasso</div><div class="co-badge co-yours">Your pick</div></div>
+    <div class="co-meta">Via Properzio, 31 &middot; 5 min walk &middot; Open until 1am Mon-Sat</div>
+    <div class="co-detail">Buzzy neighbourhood bar right by your hotel &mdash; all-day cafe and wine bar perfect for a first-night welcome drink. Reservations 10-12 or 16-18 only. Tel: 06 89024554.</div>
+  </div>
+  <div class="copt" onclick="toggleChoice(this)">
+    <div class="co-top"><div class="co-name">Passaguai</div><div class="co-badge co-new">Recommended</div></div>
+    <div class="co-meta">Via Pomponio Leto, 1 &middot; Prati &middot; 4 min walk from hotel &middot; Open daily until 1am</div>
+    <div class="co-detail">Sister bar to Sorpasso, just around the corner from your hotel &mdash; about a 4 minute walk. More intimate and wine-focused. Opens 6pm daily. Ideal if you want something quieter after a long travel day.</div>
+  </div>
+  <div class="copt" onclick="toggleChoice(this)">
+    <div class="co-top"><div class="co-name">Terrazza Les Etoiles &mdash; nightcap with a view</div><div class="co-badge co-splurge">Splurge</div></div>
+    <div class="co-meta">Via dei Bastioni, 1 &middot; Hotel Atlante Star &middot; 2 min walk &middot; Open until midnight</div>
+    <div class="co-detail">Rome's most romantic rooftop with a direct view of St Peter's dome. No booking needed after 9pm for drinks only (subject to availability). St Peter's lit up after dark from this vantage point is spectacular. A memorable way to mark night one.</div>
+  </div>
+</div>
+</div>
+
+<!-- WED 20 -->
+<div class="day-section">
+<div class="day-hdr"><div><h2>Wednesday 20 August</h2><div class="dsub">Vatican 9am sharp &middot; Siesta &middot; Navona to Trevi evening</div></div><div class="dbadge">Day 2</div></div>
+<div class="alert-blue" style="margin-top:8px;">
+  <div class="alert-blue-title">Set an alarm &mdash; leave hotel by 8:30am</div>
+  <div class="alert-blue-body">Quick breakfast first, then 10 min walk to the Vatican. Aim to be at St Peter's Square by 9:00am before queues build and heat peaks. <strong>Dress code enforced:</strong> shoulders and knees must be covered at the entrance &mdash; carry your scarf.</div>
+</div>
+<div class="items">
+  <div class="ic" onclick="toggleDetail(this)">
+    <div class="ic-inner"><div class="stripe" style="background:var(--drink)"></div><div class="iicon">&#9749;</div>
+    <div class="ibody"><div class="itime">8:00 - 8:30am</div><div class="iname">Quick breakfast &mdash; keep it brief today</div><div class="idesc">Prati &middot; need to reach Vatican by 9am</div><div class="itags"><span class="tag t-tip">Espresso + cornetto ~3 at the bar</span></div></div>
+    <div class="iact"><span class="chev">&#8250;</span></div></div>
+    <div class="idetail"><div class="dnote">Don't linger &mdash; you want to reach the Vatican by 9am. Stand at the bar like a Roman: espresso and cornetto, done in 10 minutes, costs ~2-3. The Vatican is a 10 min walk from the hotel. See breakfast recommendations below.</div></div>
+  </div>
+</div>
+<div class="cblock">
+  <div class="chdr">Breakfast spots in Prati <span>Any morning</span></div>
+  <div class="copt" onclick="toggleChoice(this)">
+    <div class="co-top"><div class="co-name">Sciascia Caffe 1919</div><div class="co-badge co-new">Historic gem</div></div>
+    <div class="co-meta">Via Fabio Massimo, 80a &middot; Prati &middot; 5 min walk &middot; Open from 7am</div>
+    <div class="co-detail">One of Rome's most celebrated cafes &mdash; over a century old and still outstanding. Their pistachio cornetto and Fior di Neve (ricotta cream pastry) are exceptional. In summer, try their brioche con gelato &mdash; a brioche bun filled with gelato, very Roman and perfect in the August heat. Worth a slight detour any morning.</div>
+  </div>
+  <div class="copt" onclick="toggleChoice(this)">
+    <div class="co-top"><div class="co-name">Cremilla Gelateria e Pasticceria</div><div class="co-badge co-new">Recommended</div></div>
+    <div class="co-meta">Via di Porta Castello, 39-41 &middot; Prati &middot; Open 24 hours</div>
+    <div class="co-detail">Exceptional pastries and gelato available 24 hours a day &mdash; genuinely useful given your late arrival on Tuesday night too. Perfect cappuccino and cornetto before the Vatican, and right on the route there. Locals rate it highly.</div>
+  </div>
+  <div class="copt" onclick="toggleChoice(this)">
+    <div class="co-top"><div class="co-name">Commari</div><div class="co-badge co-new">Recommended</div></div>
+    <div class="co-meta">Near Vatican &middot; Prati &middot; Steps from St Peter's</div>
+    <div class="co-detail">A brilliant little cafe right by the Vatican &mdash; friendly staff, excellent coffee, fresh Roman pastries (not the sad tourist versions). Perfect if you want to grab breakfast literally on the way to the Vatican entrance. Outdoor seating for people-watching, or stand at the bar for the full Roman experience.</div>
+  </div>
+  <div class="copt" onclick="toggleChoice(this)">
+    <div class="co-top"><div class="co-name">Le Carre Francais</div><div class="co-badge co-new">French bakery</div></div>
+    <div class="co-meta">Via Vittoria Colonna, 30 &middot; Prati &middot; Open from 7am daily</div>
+    <div class="co-detail">A French patisserie in the heart of Prati &mdash; croissants, pain au chocolat, baguettes and proper Italian coffee. Spacious and comfortable if you want a sit-down breakfast rather than standing at a bar. Near Castel Sant Angelo. Open until 11:30pm so also good for an evening pastry.</div>
+  </div>
+  <div class="copt" onclick="toggleChoice(this)">
+    <div class="co-top"><div class="co-name">Mozart Cafe</div><div class="co-badge co-new">Local favourite</div></div>
+    <div class="co-meta">Prati &middot; Neighbourhood cafe &middot; Regulars return year after year</div>
+    <div class="co-detail">A beloved neighbourhood cafe in Prati with a loyal following &mdash; staff remember returning visitors and there is a genuine warmth to the place. Excellent cappuccino, good cornetti, relaxed atmosphere. The kind of local bar you come back to every morning of a trip.</div>
+  </div>
+  <div class="copt" onclick="toggleChoice(this)">
+    <div class="co-top"><div class="co-name">Terrazza Les Etoiles &mdash; leisurely rooftop breakfast</div><div class="co-badge co-splurge">Splurge &middot; not for Vatican days</div></div>
+    <div class="co-meta">Via dei Bastioni, 1 &middot; 2 min walk &middot; Opens 10am</div>
+    <div class="co-detail">Save this for Thursday morning when you don't need to rush anywhere early. Opens at 10am &mdash; too late for the Vatican day. A slow breakfast with St Peter's dome in front of you is one of the best ways to start a relaxed Rome morning. The aperitivo at 45pp is the headline but breakfast is more gentle on the wallet.</div>
+  </div>
+</div>
+<div class="items">
+  <div class="ic" onclick="toggleDetail(this)">
+    <div class="ic-inner"><div class="stripe" style="background:var(--visit)"></div><div class="iicon">&#9962;</div>
+    <div class="ibody"><div class="itime">9:00am sharp</div><div class="iname">Vatican &amp; St Peter's Basilica</div><div class="idesc">Piazza San Pietro &middot; 10 min walk from hotel</div><div class="itags"><span class="tag t-free">Free entry to basilica</span><span class="tag t-book">Vatican Museums: pre-book</span></div></div>
+    <div class="iact"><span class="chev">&#8250;</span></div></div>
+    <div class="idetail"><div class="dnote">9am is the right call &mdash; queues build dramatically from 10am and the heat becomes brutal by midday. The basilica is free to enter. Dome climb (6-8) is best done first thing while it is cooler. Vatican Museums need separate timed tickets booked weeks ahead. Allow 1.5-2 hrs. <strong>Dress code strictly enforced</strong> &mdash; shoulders and knees covered or you will be turned away at the gate.</div></div>
+  </div>
+</div>
+<div class="cblock">
+  <div class="chdr">Add on after Vatican? <span>Optional</span></div>
+  <div class="copt" onclick="toggleChoice(this)">
+    <div class="co-top"><div class="co-name">Castel Sant Angelo &mdash; perfect add-on</div><div class="co-badge co-new">Recommended</div></div>
+    <div class="co-meta">Lungotevere Castello &middot; 10 min walk from St Peter's &middot; ~16pp</div>
+    <div class="co-detail">Walk straight from St Peter's Square across the beautiful Ponte Sant Angelo &mdash; lined with Bernini angels &mdash; and into Castel Sant Angelo. Hadrian's Mausoleum turned papal fortress with extraordinary terrace views and secret passageways. About 1.5 hrs. Finish around 11-11:30am then head for lunch and siesta. Book skip-the-line tickets online.</div>
+  </div>
+  <div class="copt" onclick="toggleChoice(this)">
+    <div class="co-top"><div class="co-name">Head straight to lunch</div><div class="co-badge co-yours">Sensible option</div></div>
+    <div class="co-meta">Back to Prati ~11:30am</div>
+    <div class="co-detail">After a full Vatican morning from 9am you will be ready for food and rest by 11:30. Head back to Prati for lunch then straight into siesta before the long evening ahead. Saves energy for Navona, Pantheon and Trevi.</div>
+  </div>
+</div>
+<div class="cblock">
+  <div class="chdr">Wednesday lunch <span>Pick one</span></div>
+  <div class="copt" onclick="toggleChoice(this)">
+    <div class="co-top"><div class="co-name">Bonci Pizzarium</div><div class="co-badge co-yours">Your pick</div></div>
+    <div class="co-meta">Via della Meloria, 43 &middot; Prati &middot; Near Vatican</div>
+    <div class="co-detail">Rome's most celebrated pizza al taglio. Slow-fermented dough, outstanding seasonal toppings, pay by weight. Get there before noon. Almost on the way back to the hotel from the Vatican.</div>
+  </div>
+  <div class="copt" onclick="toggleChoice(this)">
+    <div class="co-top"><div class="co-name">Lumiere Bistro</div><div class="co-badge co-new">Recommended</div></div>
+    <div class="co-meta">Via Cicerone, 25 &middot; Prati &middot; Open daily 6:45am-2am</div>
+    <div class="co-detail">A beautiful all-day bistro in Prati &mdash; stylish, relaxed, air-conditioned. Great for a proper sit-down lunch before the siesta. Excellent food from breakfast through aperitivo.</div>
+  </div>
+  <div class="copt" onclick="toggleChoice(this)">
+    <div class="co-top"><div class="co-name">Banchina 63</div><div class="co-badge co-new">Recommended</div></div>
+    <div class="co-meta">Prati &middot; Outstanding seafood restaurant</div>
+    <div class="co-detail">One of Prati's best restaurants &mdash; outstanding fish and seafood with excellent pasta. A generous leisurely lunch that pairs perfectly with the siesta that follows.</div>
+  </div>
+</div>
+<div class="siesta">
+  <div class="siesta-hdr"><span>Siesta &mdash; 2 hrs midday</span><small>~12:30 to 14:30 &middot; flexible</small></div>
+  <div class="siesta-body">Back to the hotel &mdash; close the shutters, put the fan on, and rest. This is Rome done properly. You are going to be out until midnight or later tonight. The streets are roasting and largely empty between 12:30 and 3pm &mdash; Romans are not out there and neither should you be. Recharge before the long evening ahead.</div>
+</div>
+<div class="items">
+  <div class="conn"><div class="cline"></div><div class="ctxt">~14:30 refreshed and ready</div></div>
+  <div class="ic" onclick="toggleDetail(this)">
+    <div class="ic-inner"><div class="stripe" style="background:var(--visit)"></div><div class="iicon">&#127963;</div>
+    <div class="ibody"><div class="itime">14:30 - 17:00</div><div class="iname">Monti district wander</div><div class="idesc">Rione Monti &middot; Rome's coolest neighbourhood &middot; near Colosseum</div><div class="itags"><span class="tag t-free">Free</span><span class="tag t-tip">Scout Colosseum exterior for tomorrow</span></div></div>
+    <div class="iact"><span class="chev">&#8250;</span></div></div>
+    <div class="idetail"><div class="dnote">Cobbled streets, independent boutiques, vintage shops, and excellent aperitivo bars. Piazza della Madonna dei Monti is the heart of it &mdash; grab a Campari Spritz and people-watch as the city wakes back up. The Colosseum is right at the edge of Monti &mdash; good to see it from outside and get your bearings before your 8:30am visit tomorrow. Via del Boschetto for boutiques.</div></div>
+  </div>
+</div>
+<div class="cblock">
+  <div class="chdr">Wednesday dinner &mdash; eat before Trevi <span>Pick one</span></div>
+  <div class="copt" onclick="toggleChoice(this)">
+    <div class="co-top"><div class="co-name">Gigi Rigolatto</div><div class="co-badge co-new">Anniversary favourite</div></div>
+    <div class="co-meta">Piazza della Minerva, 69 &middot; Orient Express La Minerva &middot; Book ahead</div>
+    <div class="co-detail">Rooftop restaurant above the Pantheon &mdash; direct sightline to the dome, 360 degree city views. Art Deco glamour, handmade pastas, wood-fired mains, signature Bellini bar. Perfect for a special occasion dinner. Tell them it is a special occasion when booking.</div>
+  </div>
+  <div class="copt" onclick="toggleChoice(this)">
+    <div class="co-top"><div class="co-name">Armando al Pantheon</div><div class="co-badge co-yours">Your pick</div></div>
+    <div class="co-meta">Via della Rotonda, 2 &middot; Steps from the Pantheon &middot; Book weeks ahead</div>
+    <div class="co-detail">A Roman institution since 1961 &mdash; proper cucina romana in the shadow of the Pantheon. Cacio e pepe, coda alla vaccinara, artichokes alla romana. Atmospheric, buzzy, exceptional. Book as early as possible &mdash; one of Rome's most sought-after tables.</div>
+  </div>
+  <div class="copt" onclick="toggleChoice(this)">
+    <div class="co-top"><div class="co-name">Terrazza Borromini</div><div class="co-badge co-new">Recommended</div></div>
+    <div class="co-meta">Above Piazza Navona &middot; Romantic and upscale</div>
+    <div class="co-detail">Rooftop restaurant perched above Piazza Navona &mdash; practically level with Bernini's fountains. Spectacular setting, excellent service. Ideal for a special dinner before your Trevi walk. Book ahead.</div>
+  </div>
+  <div class="copt" onclick="toggleChoice(this)">
+    <div class="co-top"><div class="co-name">Roscioli</div><div class="co-badge co-yours">Your pick</div></div>
+    <div class="co-meta">Via dei Giubbonari, 21 &middot; Book essential</div>
+    <div class="co-detail">Incredible cured meats, aged cheeses and Roman pasta dishes. Part deli, part restaurant &mdash; one of Rome's most celebrated food destinations. Book the restaurant section well ahead.</div>
+  </div>
+</div>
+<div class="items">
+  <div class="ic" onclick="toggleDetail(this)">
+    <div class="ic-inner"><div class="stripe" style="background:var(--visit)"></div><div class="iicon">&#9906;</div>
+    <div class="ibody"><div class="itime">19:00 evening stroll</div><div class="iname">Piazza Navona to Pantheon</div><div class="idesc">Golden hour &middot; 5 min walk between them</div><div class="itags"><span class="tag t-free">Free</span><span class="tag t-tip">Best at dusk</span></div></div>
+    <div class="iact"><span class="chev">&#8250;</span></div></div>
+    <div class="idetail"><div class="dnote">Piazza Navona is Baroque at its best &mdash; Bernini's Fountain of the Four Rivers is extraordinary. The walk to the Pantheon takes 5 minutes through atmospheric narrow streets. Pick up a gelato from Giolitti en route.</div></div>
+  </div>
+  <div class="conn"><div class="cline"></div><div class="ctxt">~15 min walk to Trevi</div></div>
+  <div class="ic" onclick="toggleDetail(this)">
+    <div class="ic-inner"><div class="stripe" style="background:var(--visit)"></div><div class="iicon">&#128167;</div>
+    <div class="ibody"><div class="itime">~21:00</div><div class="iname">Trevi Fountain</div><div class="idesc">Piazza di Trevi &middot; best after 9pm</div><div class="itags"><span class="tag t-eve">Evening magic</span><span class="tag t-tip">Throw your coin together</span></div></div>
+    <div class="iact"><span class="chev">&#8250;</span></div></div>
+    <div class="idetail"><div class="dnote">9pm is significantly better &mdash; dramatically lit, crowds much thinner, genuinely romantic. Throw a coin over your left shoulder with your right hand &mdash; legend guarantees a return to Rome. Do it together. Pompi tiramisu nearby for a sweet finish to the night.</div></div>
+  </div>
+</div>
+<div class="cblock">
+  <div class="chdr">Wednesday late night <span>Optional</span></div>
+  <div class="copt" onclick="toggleChoice(this)">
+    <div class="co-top"><div class="co-name">Alexanderplatz Jazz Club</div><div class="co-badge co-yours">Your pick</div></div>
+    <div class="co-meta">Via Ostia, 9 &middot; Prati &middot; Near hotel &middot; Reserve ahead</div>
+    <div class="co-detail">Rome's most celebrated jazz venue &mdash; intimate basement club, live music most nights. Minutes from your hotel. Check their August programme and book a table. Perfect end to the evening if you have the energy.</div>
+  </div>
+  <div class="copt" onclick="toggleChoice(this)">
+    <div class="co-top"><div class="co-name">Terrazza Les Etoiles &mdash; nightcap</div><div class="co-badge co-new">Romantic</div></div>
+    <div class="co-meta">Via dei Bastioni, 1 &middot; 2 min from hotel &middot; Open until midnight</div>
+    <div class="co-detail">No booking needed for after-dinner drinks. St Peter's dome glowing in front of you. One of Rome's most romantic spots. Two minutes from your hotel &mdash; ideal last drink before bed.</div>
+  </div>
+  <div class="copt" onclick="toggleChoice(this)">
+    <div class="co-top"><div class="co-name">Emerald's Independent Bar</div><div class="co-badge co-yours">Your pick</div></div>
+    <div class="co-meta">Rome &middot; Independent bar</div>
+    <div class="co-detail">Your researched pick &mdash; worth confirming hours and location in advance for a late drink option after Trevi.</div>
+  </div>
+</div>
+</div>
+
+<!-- THU 21 -->
+<div class="day-section">
+<div class="day-hdr"><div><h2>Thursday 21 August</h2><div class="dsub">Colosseum 8:30am sharp &middot; Siesta &middot; Anniversary dinner</div></div><div class="dbadge">Day 3</div></div>
+<div class="alert-blue" style="margin-top:8px;">
+  <div class="alert-blue-title">Set an alarm &mdash; leave hotel by 7:45am</div>
+  <div class="alert-blue-body">Quick breakfast first (Sciascia Caffe or Cremilla are both nearby and fast), then Metro from Lepanto (Line A) to Termini, change to Line B to Colosseo &mdash; about 15 mins total. You need to be at the Colosseum entrance by 8:30am. It fills up fast and August heat makes late morning visits punishing. <strong>Dress code:</strong> shoulders covered recommended &mdash; and wear comfortable shoes, the site involves a lot of uneven ancient ground.</div>
+</div>
+<div class="items">
+  <div class="ic" onclick="toggleDetail(this)">
+    <div class="ic-inner"><div class="stripe" style="background:var(--visit)"></div><div class="iicon">&#127965;</div>
+    <div class="ibody"><div class="itime">8:30am &middot; pre-booked</div><div class="iname">Colosseum &mdash; Arena Floor or Underground</div><div class="idesc">Piazza del Colosseo &middot; Metro: Line A then B at Termini</div><div class="itags"><span class="tag t-book">Book NOW at coopculture.it</span><span class="tag t-tip">Includes Forum and Palatine Hill</span></div></div>
+    <div class="iact"><span class="chev">&#8250;</span></div></div>
+    <div class="idetail"><div class="dnote">The underground experience shows the hypogeum &mdash; tunnels where gladiators and animals were held before entering the arena. Far more memorable than the standard visit. Metro: Lepanto (Line A) to Termini, change to Line B, to Colosseo. <strong>Book at coopculture.it &mdash; sells out weeks ahead in August.</strong></div></div>
+  </div>
+  <div class="conn"><div class="cline"></div><div class="ctxt">Included with ticket</div></div>
+  <div class="ic" onclick="toggleDetail(this)">
+    <div class="ic-inner"><div class="stripe" style="background:var(--visit)"></div><div class="iicon">&#127963;</div>
+    <div class="ibody"><div class="itime">After Colosseum ~10:30</div><div class="iname">Roman Forum &amp; Palatine Hill</div><div class="idesc">Included with Colosseum ticket</div><div class="itags"><span class="tag t-free">Included in ticket</span><span class="tag t-tip">Palatine Hill has great shade and views</span></div></div>
+    <div class="iact"><span class="chev">&#8250;</span></div></div>
+    <div class="idetail"><div class="dnote">The heart of ancient Rome. Allow 1-2 hours. Palatine Hill is the quietest part and has superb views over the Forum below. The Via Sacra (Sacred Way) through the Forum is the road triumphant generals once marched. Find shade where you can &mdash; it is very exposed by mid-morning.</div></div>
+  </div>
+</div>
+<div class="cblock">
+  <div class="chdr">Thursday lunch &mdash; post Colosseum <span>Pick one</span></div>
+  <div class="copt" onclick="toggleChoice(this)">
+    <div class="co-top"><div class="co-name">Mizio's Street Food</div><div class="co-badge co-yours">Your pick</div></div>
+    <div class="co-meta">Near Colosseum &middot; Monti area</div>
+    <div class="co-detail">Your flagged option &mdash; local street food in the Monti area, ideal after the Colosseum. Quick, good value, and the neighbourhood itself is worth exploring.</div>
+  </div>
+  <div class="copt" onclick="toggleChoice(this)">
+    <div class="co-top"><div class="co-name">Piazza della Madonna dei Monti</div><div class="co-badge co-new">Local favourite</div></div>
+    <div class="co-meta">Monti district &middot; 10 min walk from Colosseum</div>
+    <div class="co-detail">The heart of Monti &mdash; grab food from one of the delis or street food spots and eat in the piazza with a Campari Spritz. This is where Romans actually sit outside in the afternoon. Very relaxed and very local.</div>
+  </div>
+  <div class="copt" onclick="toggleChoice(this)">
+    <div class="co-top"><div class="co-name">Antico Vinaio</div><div class="co-badge co-yours">Your pick</div></div>
+    <div class="co-meta">Schiacciata sandwiches &middot; Quick and brilliant</div>
+    <div class="co-detail">Brilliant schiacciata (flat bread) sandwiches packed with cured meats, cheeses and sauces. Simple, excellent, very queued &mdash; get there sharp. Great fuel for the afternoon.</div>
+  </div>
+  <div class="copt" onclick="toggleChoice(this)">
+    <div class="co-top"><div class="co-name">Rosso Vivo</div><div class="co-badge co-yours">Your pick</div></div>
+    <div class="co-meta">Rome &middot; Lunch option</div>
+    <div class="co-detail">Your research pick for lunch &mdash; worth confirming address and booking ahead if needed.</div>
+  </div>
+</div>
+<div class="siesta">
+  <div class="siesta-hdr"><span>Siesta &mdash; 2 hrs midday</span><small>~12:30 to 14:30 &middot; flexible</small></div>
+  <div class="siesta-body">You have been up since 7am and walked the Colosseum, Roman Forum and Palatine Hill in August heat. Back to the hotel &mdash; rest, shower, change. You have your anniversary dinner tonight and want to feel good for it. The city will keep.</div>
+</div>
+<div class="items"><div class="conn"><div class="cline"></div><div class="ctxt">~14:30 recharged</div></div></div>
+<div class="cblock">
+  <div class="chdr">Thursday afternoon <span>Pick one</span></div>
+  <div class="copt" onclick="toggleChoice(this)">
+    <div class="co-top"><div class="co-name">Trastevere &mdash; afternoon wander</div><div class="co-badge co-new">Highly recommended</div></div>
+    <div class="co-meta">Across the Tiber &middot; Bus 23 or 25 min walk over Ponte Sisto</div>
+    <div class="co-detail">Rome's most characterful neighbourhood &mdash; ivy-draped medieval streets, artisan shops, and a completely different vibe. The Basilica di Santa Maria in Trastevere is stunning (free). Stay for aperitivo as the neighbourhood comes alive at sunset. One of the most romantic areas in Rome for a couple.</div>
+  </div>
+  <div class="copt" onclick="toggleChoice(this)">
+    <div class="co-top"><div class="co-name">Spanish Steps &amp; Villa Borghese gardens</div><div class="co-badge co-new">Recommended</div></div>
+    <div class="co-meta">Metro A: Spagna &middot; Gardens free</div>
+    <div class="co-detail">The Spanish Steps are quieter in late afternoon. The Borghese Gardens above are lovely for a shaded walk. Galleria Borghese (booking essential weeks ahead) holds Bernini sculptures and Caravaggio paintings &mdash; one of the world's great small galleries.</div>
+  </div>
+  <div class="copt" onclick="toggleChoice(this)">
+    <div class="co-top"><div class="co-name">Aperitivo at Terrazza Les Etoiles</div><div class="co-badge co-splurge">Splurge &middot; Book!</div></div>
+    <div class="co-meta">Via dei Bastioni, 1 &middot; 17:30 to 21:00 &middot; 45pp &middot; Reserve ahead</div>
+    <div class="co-detail">Cocktail and finger food with St Peter's dome glowing in front of you at sunset. One of the most romantic settings in Rome &mdash; and two minutes from your hotel. Reservation required for the aperitivo slot.</div>
+  </div>
+</div>
+<div class="cblock">
+  <div class="chdr">Anniversary &amp; birthday dinner <span>Pick one</span></div>
+  <div class="copt" onclick="toggleChoice(this)">
+    <div class="co-top"><div class="co-name">Gigi Rigolatto</div><div class="co-badge co-splurge">Top recommendation</div></div>
+    <div class="co-meta">Piazza della Minerva, 69 &middot; Orient Express La Minerva &middot; Near Pantheon</div>
+    <div class="co-detail">Rooftop restaurant above the Pantheon &mdash; direct sightline to the dome, 360 degree city views at night. Art Deco glamour, handmade pastas, wood-fired mains, signature Bellini bar. Tell them it is your anniversary and birthday when booking. Book well in advance.</div>
+  </div>
+  <div class="copt" onclick="toggleChoice(this)">
+    <div class="co-top"><div class="co-name">Zuma Rome</div><div class="co-badge co-yours">Your pick</div></div>
+    <div class="co-meta">Via della Fontanella di Borghese, 48 &middot; Japanese &middot; Premium</div>
+    <div class="co-detail">High-end Japanese restaurant &mdash; robata grill, izakaya sharing plates, excellent cocktails. Smart and atmospheric. A glamorous non-Italian anniversary option. Book well ahead for August.</div>
+  </div>
+  <div class="copt" onclick="toggleChoice(this)">
+    <div class="co-top"><div class="co-name">Terrazza Borromini</div><div class="co-badge co-new">Recommended</div></div>
+    <div class="co-meta">Above Piazza Navona &middot; Upscale &middot; Reserve ahead</div>
+    <div class="co-detail">Sitting above Piazza Navona at night with Bernini's fountains below and Rome's rooftops stretching out is genuinely breathtaking. Save this for the birthday dinner if you did not use it on Wednesday.</div>
+  </div>
+  <div class="copt" onclick="toggleChoice(this)">
+    <div class="co-top"><div class="co-name">Osteria Faruso</div><div class="co-badge co-yours">Your pick</div></div>
+    <div class="co-meta">Rome &middot; Neighbourhood trattoria</div>
+    <div class="co-detail">A more relaxed, neighbourhood trattoria option if you want something unpretentious and local for the birthday dinner rather than a rooftop splurge.</div>
+  </div>
+</div>
+</div>
+
+<!-- FRI 22 -->
+<div class="day-section">
+<div class="day-hdr"><div><h2>Friday 22 August</h2><div class="dsub">Morning only &middot; Leave hotel by 12:30</div></div><div class="dbadge">Day 4</div></div>
+<div class="alert-red" style="margin-top:8px;">
+  <div class="alert-red-title">Airport transfer chain &mdash; do not leave this late</div>
+  <div class="alert-red-body">
+    <strong>12:30</strong> Leave hotel &rarr; walk to Lepanto (5 min)<br>
+    <strong>12:35</strong> Metro Line A to Termini (~15 min)<br>
+    <strong>12:50</strong> Leonardo Express from Termini to Fiumicino (~32 min, 14pp)<br>
+    <strong>13:25</strong> Arrive Fiumicino &middot; check-in and security<br>
+    <strong>15:25</strong> Flight departs &middot; check-in closes ~14:25<br><br>
+    This is tight but comfortable if you leave at 12:30. Do not leave later than 13:00 under any circumstances.
+  </div>
+</div>
+<div class="items">
+  <div class="ic" onclick="toggleDetail(this)">
+    <div class="ic-inner"><div class="stripe" style="background:var(--street)"></div><div class="iicon">&#127860;</div>
+    <div class="ibody"><div class="itime">9:00 - 11:00am</div><div class="iname">Final Roman breakfast</div><div class="idesc">Sciascia Caffe 1919 &middot; Forno Campo de Fiori &middot; Cremilla &middot; or your favourite from the trip</div><div class="itags"><span class="tag t-tip">Last espresso and cornetto</span></div></div>
+    <div class="iact"><span class="chev">&#8250;</span></div></div>
+    <div class="idetail"><div class="dnote">Forno Campo de Fiori is famous for their pizza bianca and maritozzi (cream buns). Antico Forno Trevi is excellent near the fountain. Or keep it simple at any local bar near the hotel &mdash; you have got a flight to catch.</div></div>
+  </div>
+  <div class="ic" onclick="toggleDetail(this)">
+    <div class="ic-inner"><div class="stripe" style="background:var(--street)"></div><div class="iicon">&#127873;</div>
+    <div class="ibody"><div class="itime">10:00 - 11:30am</div><div class="iname">Last browse &mdash; treats to take home</div><div class="idesc">Said &middot; Pompi &middot; Antico Vinaio &middot; Antica Salumeria</div><div class="itags"><span class="tag t-tip">Said: great for chocolate gifts</span></div></div>
+    <div class="iact"><span class="chev">&#8250;</span></div></div>
+    <div class="idetail"><div class="dnote">Said is a historic chocolate factory and cafe near Termini &mdash; perfect for gifts. Pompi for a final tiramisu. Antico Vinaio for one last schiacciata. Antica Salumeria al Pantheon for a bag of proper Italian snacks for the flight.</div></div>
+  </div>
+  <div class="conn"><div class="cline"></div><div class="ctxt">Leave hotel 12:30 at the absolute latest</div></div>
+  <div class="ic" onclick="toggleDetail(this)">
+    <div class="ic-inner"><div class="stripe" style="background:var(--hotel)"></div><div class="iicon">&#9992;</div>
+    <div class="ibody"><div class="itime">15:25 depart FCO</div><div class="iname">Flight home &mdash; FCO to MAN</div><div class="idesc">Arrive Manchester 17:15</div><div class="itags"><span class="tag t-tip">Leave hotel by 12:30</span></div></div>
+    <div class="iact"><span class="chev">&#8250;</span></div></div>
+    <div class="idetail"><div class="dnote">Leonardo Express from Termini to Fiumicino every 30 mins (~32 min, 14pp). Leave hotel by 12:30 to reach check-in by 13:30 with comfortable time. Check-in typically closes 2 hours before departure.</div></div>
+  </div>
+</div>
+</div>
+</div><!-- end itinerary -->
+
+<!-- ===== PLACES ===== -->
+<div id="panel-places" class="panel">
+<div class="filter-bar">
+  <button class="fbtn active" data-cat="all" onclick="filterPlaces('all')">All</button>
+  <button class="fbtn" data-cat="hotel" onclick="filterPlaces('hotel')">Base</button>
+  <button class="fbtn" data-cat="visit" onclick="filterPlaces('visit')">Sights</button>
+  <button class="fbtn" data-cat="eat" onclick="filterPlaces('eat')">Eat</button>
+  <button class="fbtn" data-cat="drink" onclick="filterPlaces('drink')">Drink</button>
+  <button class="fbtn" data-cat="street" onclick="filterPlaces('street')">Street food</button>
+  <button class="fbtn" data-cat="rec" onclick="filterPlaces('rec')">New</button>
+</div>
+<div style="padding:0 0 10px;">
+  <div class="pg-title">Your base</div>
+  <div class="pgrid">
+    <div class="pm" data-cat="hotel" onclick="openMaps('Via degli Scipioni 286 Rome')"><div class="pm-cat"><span class="pm-dot" style="background:var(--hotel)"></span><span style="color:var(--hotel)">Hotel</span></div><div class="pm-name">Your Hotel</div><div class="pm-addr">Via degli Scipioni, 286 &middot; Prati</div></div>
+    <div class="pm" data-cat="drink" onclick="openMaps('Hotel Atlante Star Via dei Bastioni 1 Rome')"><div class="pm-cat"><span class="pm-dot" style="background:var(--drink)"></span><span style="color:var(--drink)">Rooftop bar</span></div><div class="pm-name">Terrazza Les Etoiles</div><div class="pm-addr">Via dei Bastioni, 1 &middot; 2 min walk</div></div>
+  </div>
+  <div class="pg-title">Sightseeing</div>
+  <div class="pgrid">
+    <div class="pm" data-cat="visit" onclick="openMaps('Colosseum Rome')"><div class="pm-cat"><span class="pm-dot" style="background:var(--visit)"></span><span style="color:var(--visit)">Visit &middot; Book now!</span></div><div class="pm-name">Colosseum</div><div class="pm-addr">Piazza del Colosseo &middot; Metro B</div></div>
+    <div class="pm" data-cat="rec" onclick="openMaps('Castel Sant Angelo Rome')"><div class="pm-cat"><span class="pm-dot" style="background:var(--rec)"></span><span style="color:var(--rec)">Visit &middot; New</span></div><div class="pm-name">Castel Sant Angelo</div><div class="pm-addr">Lungotevere Castello &middot; 10 min walk</div></div>
+    <div class="pm" data-cat="visit" onclick="openMaps('Piazza Navona Rome')"><div class="pm-cat"><span class="pm-dot" style="background:var(--visit)"></span><span style="color:var(--visit)">Visit &middot; Wed 7pm</span></div><div class="pm-name">Piazza Navona</div><div class="pm-addr">Baroque piazza &middot; Bernini fountain</div></div>
+    <div class="pm" data-cat="visit" onclick="openMaps('Pantheon Rome')"><div class="pm-cat"><span class="pm-dot" style="background:var(--visit)"></span><span style="color:var(--visit)">Visit</span></div><div class="pm-name">Pantheon</div><div class="pm-addr">Piazza della Rotonda</div></div>
+    <div class="pm" data-cat="visit" onclick="openMaps('Trevi Fountain Rome')"><div class="pm-cat"><span class="pm-dot" style="background:var(--visit)"></span><span style="color:var(--visit)">Visit &middot; 9pm Wed</span></div><div class="pm-name">Trevi Fountain</div><div class="pm-addr">Best after 9pm</div></div>
+    <div class="pm" data-cat="rec" onclick="openMaps('Spanish Steps Rome')"><div class="pm-cat"><span class="pm-dot" style="background:var(--rec)"></span><span style="color:var(--rec)">Visit &middot; New</span></div><div class="pm-name">Spanish Steps</div><div class="pm-addr">Metro A: Spagna</div></div>
+    <div class="pm" data-cat="rec" onclick="openMaps('Trastevere Rome')"><div class="pm-cat"><span class="pm-dot" style="background:var(--rec)"></span><span style="color:var(--rec)">District &middot; New</span></div><div class="pm-name">Trastevere</div><div class="pm-addr">Thu afternoon &middot; Bus 23</div></div>
+    <div class="pm" data-cat="visit" onclick="openMaps('Rione Monti Rome')"><div class="pm-cat"><span class="pm-dot" style="background:var(--visit)"></span><span style="color:var(--visit)">District</span></div><div class="pm-name">Monti</div><div class="pm-addr">Near Colosseum</div></div>
+    <div class="pm" data-cat="visit" onclick="openMaps('St Peters Basilica Vatican Rome')"><div class="pm-cat"><span class="pm-dot" style="background:var(--visit)"></span><span style="color:var(--visit)">Visit &middot; Wed 9am</span></div><div class="pm-name">Vatican &amp; St Peter's</div><div class="pm-addr">10 min walk from hotel</div></div>
+    <div class="pm" data-cat="rec" onclick="openMaps('Galleria Borghese Rome')"><div class="pm-cat"><span class="pm-dot" style="background:var(--rec)"></span><span style="color:var(--rec)">Gallery &middot; Book ahead</span></div><div class="pm-name">Galleria Borghese</div><div class="pm-addr">Bernini &amp; Caravaggio</div></div>
+    <div class="pm" data-cat="visit" onclick="openMaps('Ponte Sant Angelo Rome')"><div class="pm-cat"><span class="pm-dot" style="background:var(--visit)"></span><span style="color:var(--visit)">Walk</span></div><div class="pm-name">Ponte Sant Angelo</div><div class="pm-addr">Bernini angels &middot; romantic bridge</div></div>
+    <div class="pm" data-cat="visit" onclick="openMaps('Roman Forum Rome')"><div class="pm-cat"><span class="pm-dot" style="background:var(--visit)"></span><span style="color:var(--visit)">Visit &middot; Incl. ticket</span></div><div class="pm-name">Roman Forum</div><div class="pm-addr">Included with Colosseum</div></div>
+  </div>
+  <div class="pg-title">Restaurants &amp; bars</div>
+  <div class="pgrid">
+    <div class="pm" data-cat="eat" onclick="openMaps('Armando al Pantheon Rome')"><div class="pm-cat"><span class="pm-dot" style="background:var(--eat)"></span><span style="color:var(--eat)">Eat &middot; Book!</span></div><div class="pm-name">Armando al Pantheon</div><div class="pm-addr">Via della Rotonda, 2</div></div>
+    <div class="pm" data-cat="rec" onclick="openMaps('Gigi Rigolatto La Minerva Rome Pantheon')"><div class="pm-cat"><span class="pm-dot" style="background:var(--rec)"></span><span style="color:var(--rec)">Rooftop &middot; Book!</span></div><div class="pm-name">Gigi Rigolatto</div><div class="pm-addr">Piazza della Minerva, 69</div></div>
+    <div class="pm" data-cat="rec" onclick="openMaps('Terrazza Borromini Rome Navona')"><div class="pm-cat"><span class="pm-dot" style="background:var(--rec)"></span><span style="color:var(--rec)">Rooftop &middot; New</span></div><div class="pm-name">Terrazza Borromini</div><div class="pm-addr">Above Piazza Navona</div></div>
+    <div class="pm" data-cat="eat" onclick="openMaps('Roscioli restaurant Via dei Giubbonari Rome')"><div class="pm-cat"><span class="pm-dot" style="background:var(--eat)"></span><span style="color:var(--eat)">Eat &middot; Book!</span></div><div class="pm-name">Roscioli</div><div class="pm-addr">Via dei Giubbonari, 21</div></div>
+    <div class="pm" data-cat="eat" onclick="openMaps('Zuma restaurant Rome')"><div class="pm-cat"><span class="pm-dot" style="background:var(--eat)"></span><span style="color:var(--eat)">Eat &middot; Premium</span></div><div class="pm-name">Zuma</div><div class="pm-addr">Via Fontanella di Borghese</div></div>
+    <div class="pm" data-cat="eat" onclick="openMaps('Osteria Faruso Rome')"><div class="pm-cat"><span class="pm-dot" style="background:var(--eat)"></span><span style="color:var(--eat)">Eat</span></div><div class="pm-name">Osteria Faruso</div><div class="pm-addr">Neighbourhood trattoria</div></div>
+    <div class="pm" data-cat="eat" onclick="openMaps('Rosso Vivo Rome')"><div class="pm-cat"><span class="pm-dot" style="background:var(--eat)"></span><span style="color:var(--eat)">Lunch</span></div><div class="pm-name">Rosso Vivo</div><div class="pm-addr">Lunch option</div></div>
+    <div class="pm" data-cat="drink" onclick="openMaps('Sorpasso bar Via Properzio 31 Rome')"><div class="pm-cat"><span class="pm-dot" style="background:var(--drink)"></span><span style="color:var(--drink)">Bar</span></div><div class="pm-name">Sorpasso</div><div class="pm-addr">Via Properzio, 31 &middot; Prati</div></div>
+    <div class="pm" data-cat="rec" onclick="openMaps('Passaguai bar Via Pomponio Leto Rome')"><div class="pm-cat"><span class="pm-dot" style="background:var(--rec)"></span><span style="color:var(--rec)">Bar &middot; New</span></div><div class="pm-name">Passaguai</div><div class="pm-addr">Via Pomponio Leto, 1 &middot; 4 min walk</div></div>
+    <div class="pm" data-cat="rec" onclick="openMaps('Lumiere Bistro Via Cicerone 25 Rome')"><div class="pm-cat"><span class="pm-dot" style="background:var(--rec)"></span><span style="color:var(--rec)">Bistro &middot; New</span></div><div class="pm-name">Lumiere Bistro</div><div class="pm-addr">Via Cicerone, 25 &middot; Prati</div></div>
+    <div class="pm" data-cat="rec" onclick="openMaps('Banchina 63 seafood Prati Rome')"><div class="pm-cat"><span class="pm-dot" style="background:var(--rec)"></span><span style="color:var(--rec)">Seafood &middot; New</span></div><div class="pm-name">Banchina 63</div><div class="pm-addr">Prati &middot; Top seafood</div></div>
+    <div class="pm" data-cat="jazz" onclick="openMaps('Alexanderplatz Jazz Club Via Ostia 9 Rome')"><div class="pm-cat"><span class="pm-dot" style="background:var(--jazz)"></span><span style="color:var(--jazz)">Jazz &middot; Book!</span></div><div class="pm-name">Alexanderplatz</div><div class="pm-addr">Via Ostia, 9 &middot; Prati</div></div>
+    <div class="pm" data-cat="drink" onclick="openMaps('Emerald Independent Bar Rome')"><div class="pm-cat"><span class="pm-dot" style="background:var(--drink)"></span><span style="color:var(--drink)">Bar</span></div><div class="pm-name">Emerald's Bar</div><div class="pm-addr">Independent bar</div></div>
+  </div>
+  <div class="pg-title">Breakfast &amp; coffee</div>
+  <div class="pgrid">
+    <div class="pm" data-cat="street" onclick="openMaps('Sciascia Caffe 1919 Via Fabio Massimo Rome')"><div class="pm-cat"><span class="pm-dot" style="background:var(--street)"></span><span style="color:var(--street)">Cafe &middot; Historic</span></div><div class="pm-name">Sciascia Caffe 1919</div><div class="pm-addr">Via Fabio Massimo, 80a &middot; 5 min walk</div></div>
+    <div class="pm" data-cat="street" onclick="openMaps('Cremilla Via di Porta Castello Rome')"><div class="pm-cat"><span class="pm-dot" style="background:var(--street)"></span><span style="color:var(--street)">Cafe &middot; 24hrs</span></div><div class="pm-name">Cremilla</div><div class="pm-addr">Via di Porta Castello, 39-41 &middot; 24hrs</div></div>
+    <div class="pm" data-cat="street" onclick="openMaps('Commari cafe Vatican Rome')"><div class="pm-cat"><span class="pm-dot" style="background:var(--street)"></span><span style="color:var(--street)">Cafe &middot; Near Vatican</span></div><div class="pm-name">Commari</div><div class="pm-addr">Near Vatican entrance &middot; Prati</div></div>
+    <div class="pm" data-cat="street" onclick="openMaps('Le Carre Francais Via Vittoria Colonna 30 Rome')"><div class="pm-cat"><span class="pm-dot" style="background:var(--street)"></span><span style="color:var(--street)">French bakery</span></div><div class="pm-name">Le Carre Francais</div><div class="pm-addr">Via Vittoria Colonna, 30 &middot; Prati</div></div>
+    <div class="pm" data-cat="street" onclick="openMaps('Mozart Cafe Prati Rome')"><div class="pm-cat"><span class="pm-dot" style="background:var(--street)"></span><span style="color:var(--street)">Cafe &middot; Local favourite</span></div><div class="pm-name">Mozart Cafe</div><div class="pm-addr">Prati &middot; Neighbourhood gem</div></div>
+    <div class="pm" data-cat="street" onclick="openMaps('Sant Eustachio il Caffe Rome')"><div class="pm-cat"><span class="pm-dot" style="background:var(--rec)"></span><span style="color:var(--rec)">Espresso &middot; Best in Rome</span></div><div class="pm-name">Sant Eustachio il Caffe</div><div class="pm-addr">Piazza Sant Eustachio &middot; near Pantheon</div></div>
+  </div>
+  <div class="pg-title">Street food, bakeries &amp; gelato</div>
+  <div class="pgrid">
+    <div class="pm" data-cat="street" onclick="openMaps('Bonci Pizzarium Via della Meloria 43 Rome')"><div class="pm-cat"><span class="pm-dot" style="background:var(--street)"></span><span style="color:var(--street)">Pizza al taglio</span></div><div class="pm-name">Bonci Pizzarium</div><div class="pm-addr">Via della Meloria, 43</div></div>
+    <div class="pm" data-cat="street" onclick="openMaps('Antico Vinaio Rome')"><div class="pm-cat"><span class="pm-dot" style="background:var(--street)"></span><span style="color:var(--street)">Sandwiches</span></div><div class="pm-name">Antico Vinaio</div><div class="pm-addr">Schiacciata sandwiches</div></div>
+    <div class="pm" data-cat="street" onclick="openMaps('Mizio street food Rome Colosseum')"><div class="pm-cat"><span class="pm-dot" style="background:var(--street)"></span><span style="color:var(--street)">Street food</span></div><div class="pm-name">Mizio's</div><div class="pm-addr">Near Colosseum</div></div>
+    <div class="pm" data-cat="street" onclick="openMaps('Two Sizes Rome')"><div class="pm-cat"><span class="pm-dot" style="background:var(--street)"></span><span style="color:var(--street)">Street food</span></div><div class="pm-name">Two Sizes</div><div class="pm-addr">Rome</div></div>
+    <div class="pm" data-cat="street" onclick="openMaps('Forno Campo de Fiori Rome')"><div class="pm-cat"><span class="pm-dot" style="background:var(--street)"></span><span style="color:var(--street)">Bakery</span></div><div class="pm-name">Forno Campo de Fiori</div><div class="pm-addr">Campo de Fiori</div></div>
+    <div class="pm" data-cat="street" onclick="openMaps('Antico Forno Trevi Rome')"><div class="pm-cat"><span class="pm-dot" style="background:var(--street)"></span><span style="color:var(--street)">Bakery</span></div><div class="pm-name">Antico Forno Trevi</div><div class="pm-addr">Near Trevi Fountain</div></div>
+    <div class="pm" data-cat="street" onclick="openMaps('Roscioli bakery Via dei Chiavari Rome')"><div class="pm-cat"><span class="pm-dot" style="background:var(--street)"></span><span style="color:var(--street)">Bakery</span></div><div class="pm-name">Roscioli Bakery</div><div class="pm-addr">Via dei Chiavari</div></div>
+    <div class="pm" data-cat="street" onclick="openMaps('Said chocolate cafe Via Tiburtina Rome')"><div class="pm-cat"><span class="pm-dot" style="background:var(--street)"></span><span style="color:var(--street)">Chocolate</span></div><div class="pm-name">Said</div><div class="pm-addr">Via Tiburtina, 135</div></div>
+    <div class="pm" data-cat="street" onclick="openMaps('Giolitti gelato Rome')"><div class="pm-cat"><span class="pm-dot" style="background:var(--street)"></span><span style="color:var(--street)">Gelato</span></div><div class="pm-name">Giolitti</div><div class="pm-addr">Near Pantheon</div></div>
+    <div class="pm" data-cat="street" onclick="openMaps('Pompi tiramisu Rome')"><div class="pm-cat"><span class="pm-dot" style="background:var(--street)"></span><span style="color:var(--street)">Tiramisu</span></div><div class="pm-name">Pompi</div><div class="pm-addr">Tiramisu specialist</div></div>
+    <div class="pm" data-cat="street" onclick="openMaps('La Romana gelato Rome')"><div class="pm-cat"><span class="pm-dot" style="background:var(--street)"></span><span style="color:var(--street)">Gelato</span></div><div class="pm-name">La Romana</div><div class="pm-addr">Multiple locations</div></div>
+    <div class="pm" data-cat="street" onclick="openMaps('Antica Salumeria al Pantheon Rome')"><div class="pm-cat"><span class="pm-dot" style="background:var(--street)"></span><span style="color:var(--street)">Deli</span></div><div class="pm-name">Antica Salumeria al Pantheon</div><div class="pm-addr">Near Pantheon</div></div>
+    <div class="pm" data-cat="street" onclick="openMaps('Bona Pizzeria Rome')"><div class="pm-cat"><span class="pm-dot" style="background:var(--street)"></span><span style="color:var(--street)">Pizza</span></div><div class="pm-name">Bona Pizzeria</div><div class="pm-addr">Rome</div></div>
+    <div class="pm" data-cat="street" onclick="openMaps('Limone Rome')"><div class="pm-cat"><span class="pm-dot" style="background:var(--street)"></span><span style="color:var(--street)">Street food</span></div><div class="pm-name">Limone</div><div class="pm-addr">Rome</div></div>
+    <div class="pm" data-cat="rec" onclick="openMaps('Sant Eustachio il Caffe Rome')"><div class="pm-cat"><span class="pm-dot" style="background:var(--rec)"></span><span style="color:var(--rec)">Espresso &middot; New</span></div><div class="pm-name">Sant Eustachio il Caffe</div><div class="pm-addr">Piazza Sant Eustachio &middot; best espresso</div></div>
+  </div>
+</div>
+</div>
+
+<!-- ===== BUDGET ===== -->
+<div id="panel-budget" class="panel">
+<div style="padding:14px;">
+  <div class="budget-ctrl">
+    <label>Number of travellers</label>
+    <div class="brange"><input type="range" id="bpp" min="1" max="4" value="2" step="1" oninput="document.getElementById('bpp-val').textContent=this.value+' people';calcBudget()"><span id="bpp-val">2 people</span></div>
+  </div>
+  <div class="budget-ctrl">
+    <label>Dinner style</label>
+    <select id="bdinner" onchange="calcBudget()">
+      <option value="budget">Budget &mdash; street food and casual (30pp per dinner)</option>
+      <option value="mid" selected>Mid-range &mdash; trattorias and bistros (60pp per dinner)</option>
+      <option value="splurge">Splurge &mdash; Gigi, Zuma, rooftops (110pp per dinner)</option>
+    </select>
+  </div>
+  <div class="budget-ctrl">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;"><input type="checkbox" id="bmuseum" onchange="calcBudget()"><label for="bmuseum" style="font-size:13px;margin:0;">Vatican Museums (20pp)</label></div>
+    <div style="display:flex;align-items:center;gap:8px;"><input type="checkbox" id="bborghese" onchange="calcBudget()"><label for="bborghese" style="font-size:13px;margin:0;">Galleria Borghese (30pp)</label></div>
+  </div>
+  <div class="budget-result">
+    <div><div style="font-size:11px;opacity:.8;margin-bottom:2px;">ESTIMATED TOTAL</div><div class="brtotal" id="budget-total">0</div></div>
+    <div style="text-align:right;"><div style="font-size:16px;font-weight:300;" id="budget-totalpp">0 pp</div><div style="font-size:10px;opacity:.7;margin-top:2px;">excl. flights and hotel</div></div>
+  </div>
+  <div style="background:var(--white);border-radius:10px;border:.5px solid rgba(26,21,16,.1);overflow:hidden;margin-bottom:10px;">
+    <table class="budget-table"><tbody id="budget-rows"></tbody></table>
+  </div>
+  <div style="background:var(--gold-l);border:.5px solid rgba(201,162,39,.4);border-radius:10px;padding:10px 14px;font-size:12px;color:#5d4a0a;line-height:1.6;margin-bottom:10px;">
+    <strong>Cash tips:</strong> Carry 30-50 cash for street food, markets and small bars. Most restaurants and attractions take card. ATMs on Via Cola di Rienzo near your hotel. Avoid airport exchange &mdash; use Starling, Wise or Revolut for fee-free withdrawals.
+  </div>
+  <div style="background:var(--white);border-radius:10px;border:.5px solid rgba(26,21,16,.1);padding:12px 14px;">
+    <div style="font-size:12px;font-weight:500;color:var(--ink);margin-bottom:8px;">Tipping in Rome</div>
+    <div style="font-size:12px;color:var(--muted);line-height:1.6;">Romans do not tip the way Brits expect. A <em>coperto</em> (cover charge, 1.50-4pp) is automatically added to most sit-down meals &mdash; this is not a tip. Leaving a small amount (1-2pp) rounding up for good service is appreciated but entirely optional. Never feel obligated to tip 10-15% as you would at home. For coffee or street food: no tip expected at all.</div>
+  </div>
+</div>
+</div>
+
+<!-- ===== NOTES ===== -->
+
+<!-- ===== TIPS ===== -->
+<div id="panel-tips" class="panel">
+<div class="tips">
+  <div class="flight-c"><div class="fi"><h3>Outbound &middot; Tue 19 Aug</h3><p>Manchester to Rome Fiumicino</p></div><div class="ft">16:35<small>lands 20:20</small></div></div>
+  <div class="flight-c" style="background:var(--ink);"><div class="fi"><h3>Return &middot; Fri 22 Aug</h3><p>Rome Fiumicino to Manchester</p></div><div class="ft">15:25<small>lands 17:15</small></div></div>
+
+  <div class="tcard">
+    <h3>The heat &mdash; what to expect</h3>
+    <div class="thighlight">30-34 degrees C by midday. The cobblestones and ancient stones absorb and radiate heat &mdash; outdoor sites feel hotter than the air temperature.</div>
+    <table class="timetable" style="margin-top:6px;">
+      <tr><td class="time-col">7-9am</td><td class="place-col">Outdoor sightseeing &mdash; coolest window</td></tr>
+      <tr><td class="time-col">9-11am</td><td class="place-col">Churches and indoor museums. Air-conditioned.</td></tr>
+      <tr><td class="time-col">11am-1pm</td><td class="place-col">Long shaded lunch. Take your time.</td></tr>
+      <tr><td class="time-col">1-4pm</td><td class="place-col">Siesta. Rest at the hotel. Do not be outside.</td></tr>
+      <tr><td class="time-col">4-7pm</td><td class="place-col">Neighbourhood walks, shopping, aperitivo.</td></tr>
+      <tr><td class="time-col">7pm+</td><td class="place-col">Dinner, piazzas, evening strolls. Best Rome.</td></tr>
+      <tr><td class="time-col">9-11pm</td><td class="place-col">Trevi, gelato, rooftop bars, jazz. Stay out late.</td></tr>
+    </table>
+  </div>
+
+  <div class="tcard">
+    <h3>Water &mdash; the nasoni secret</h3>
+    <ul>
+      <li>Rome has over 2,500 free drinking fountains called nasoni (little noses) &mdash; small iron spouts on virtually every street corner</li>
+      <li>The water is cold, clean and perfectly safe. Always carry a refillable bottle.</li>
+      <li>Buying bottled water repeatedly is expensive and unnecessary</li>
+      <li>In 32 degree heat: drink far more water than you think you need</li>
+      <li>Cold granita di caffe (coffee ice slush) from a bar is a brilliant mid-afternoon reviver &mdash; very Roman, very cheap</li>
+    </ul>
+  </div>
+
+  <div class="tcard">
+    <h3>Ferragosto &mdash; what it means for your trip</h3>
+    <div class="thighlight">Ferragosto (15 August) is Italy's biggest national holiday. You arrive 4 days after it but its effects linger well into the following week.</div>
+    <ul>
+      <li><strong>The good news:</strong> Romans leave the city in huge numbers for August &mdash; your trip (19-22 Aug) falls in the quieter post-Ferragosto window</li>
+      <li><strong>The catch:</strong> Many neighbourhood trattorias close for 1-2 weeks around Ferragosto</li>
+      <li><strong>Tourist-area restaurants</strong> (Prati, Navona area, Trastevere) largely stay open &mdash; your planned restaurants should be fine</li>
+      <li><strong>Major attractions</strong> (Colosseum, Pantheon, Castel Sant Angelo) remain open</li>
+      <li><strong>Public transport</strong> runs on a reduced summer timetable &mdash; allow extra time</li>
+    </ul>
+  </div>
+
+  <div class="tcard">
+    <h3>What to wear</h3>
+    <ul>
+      <li><strong>Fabric:</strong> Linen and cotton only &mdash; anything synthetic will be miserable. Light colours reflect heat.</li>
+      <li><strong>Footwear:</strong> Comfortable walking shoes with support. Rome is cobblestones everywhere &mdash; flip flops will destroy your feet.</li>
+      <li><strong>Churches including St Peter's Basilica and Colosseum:</strong> shoulders and knees must be covered. A lightweight scarf or sarong solves this instantly.</li>
+      <li><strong>Evening:</strong> Rome dresses up for dinner. Gigi Rigolatto, Zuma and Les Etoiles expect smart-casual at minimum.</li>
+      <li>A small cross-body bag beats a rucksack in the heat and is pickpocket-resistant.</li>
+    </ul>
+  </div>
+
+  <div class="tcard">
+    <h3>Emergency and pharmacy</h3>
+    <ul>
+      <li><strong>Emergency number:</strong> 112 (all emergencies, English spoken)</li>
+      <li><strong>Medical emergency:</strong> 118 (ambulance)</li>
+      <li><strong>Nearest 24hr pharmacy:</strong> Farmacia Cola di Rienzo, Via Cola di Rienzo 213 &mdash; 5 min walk from hotel</li>
+      <li><strong>Nearest A&amp;E:</strong> Ospedale Santo Spirito, Lungotevere in Sassia 1 &mdash; 15 min walk</li>
+      <li><strong>GHIC card:</strong> Bring it &mdash; entitles you to state healthcare at reduced cost</li>
+      <li><strong>Heat exhaustion:</strong> Faint, dizzy, stops sweating &mdash; shade immediately, cool water on neck and wrists, seek help if no improvement in 15 mins</li>
+    </ul>
+  </div>
+
+  <div class="tcard">
+    <h3>Getting around</h3>
+    <ul>
+      <li>Buy a <strong>48hr or 72hr transit pass</strong> at Termini (~7/12) &mdash; covers metro, bus, trams</li>
+      <li><strong>Line A:</strong> Lepanto (hotel) to Ottaviano (Vatican) to Spagna (Spanish Steps) to Termini</li>
+      <li><strong>Line B:</strong> Termini to Colosseo (Colosseum, ~5 min)</li>
+      <li><strong>Airport:</strong> Leonardo Express, Fiumicino to Termini, every 30 min, ~32 min, 14pp</li>
+      <li><strong>Castel Sant Angelo:</strong> 10 min walk from hotel along the Tiber</li>
+      <li><strong>Trastevere:</strong> Bus 23 from near hotel, or 25 min walk over Ponte Sisto</li>
+      <li>August public transport runs on a reduced Sunday-style timetable</li>
+    </ul>
+  </div>
+
+  <div class="tcard">
+    <h3>Money and scams</h3>
+    <ul>
+      <li>Most places accept card but carry 30-50 cash for street food, markets and small bars</li>
+      <li><strong>Coperto</strong> (cover charge, 1.50-4pp) is standard at sit-down restaurants &mdash; it is not a scam, it is normal</li>
+      <li><strong>Tipping:</strong> Not expected the way it is in the UK. Rounding up 1-2 for good service is plenty.</li>
+      <li><strong>Espresso at the bar:</strong> ~1.20. Sitting at a table can be 3-4x more &mdash; normal, not a tourist trap</li>
+      <li>Pickpocketing is common on public transport &mdash; zip bag, kept in front, on the metro</li>
+      <li>"Acqua del rubinetto" (tap water) is free to ask for in restaurants &mdash; do not feel pressured to buy bottled</li>
+    </ul>
+  </div>
+
+  <div class="tcard">
+    <h3>Packing essentials for August</h3>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px 12px;font-size:12px;color:var(--muted);margin-top:4px;">
+      <div>Refillable water bottle</div><div>SPF50 sunscreen</div>
+      <div>Wide-brimmed hat</div><div>Sunglasses</div>
+      <div>Lightweight scarf (churches)</div><div>Comfortable walking shoes</div>
+      <div>Linen or cotton clothing</div><div>Small cross-body bag</div>
+      <div>Portable phone charger</div><div>Pocket tissues (some loos charge)</div>
+      <div>European plug adapter</div><div>Smart-casual outfit for evenings</div>
+      <div>GHIC card</div><div>Travel insurance details</div>
+    </div>
+  </div>
+
+  <div class="tcard">
+    <h3>Useful Italian phrases</h3>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px 12px;font-size:12px;margin-top:4px;">
+      <div><em style="color:var(--terra);">Un caffe per favore</em><br><span style="color:var(--muted);">An espresso please</span></div>
+      <div><em style="color:var(--terra);">Acqua del rubinetto</em><br><span style="color:var(--muted);">Tap water (free)</span></div>
+      <div><em style="color:var(--terra);">Il conto per favore</em><br><span style="color:var(--muted);">The bill please</span></div>
+      <div><em style="color:var(--terra);">Dov'e una fontanella?</em><br><span style="color:var(--muted);">Where is a water fountain?</span></div>
+      <div><em style="color:var(--terra);">Siete aperti?</em><br><span style="color:var(--muted);">Are you open?</span></div>
+      <div><em style="color:var(--terra);">Ho una prenotazione</em><br><span style="color:var(--muted);">I have a reservation</span></div>
+      <div><em style="color:var(--terra);">E il nostro anniversario</em><br><span style="color:var(--muted);">It's our anniversary</span></div>
+      <div><em style="color:var(--terra);">Chiuso per ferie</em><br><span style="color:var(--muted);">Closed for holidays (sign)</span></div>
+    </div>
+  </div>
+
+  <div class="tcard">
+    <h3>Book before you travel</h3>
+    <div class="thighlight">August bookings disappear fast. Sort these now.</div>
+    <ul>
+      <li>Colosseum (arena floor or underground): <a href="https://www.coopculture.it/en/" style="color:var(--terra);">coopculture.it</a> &mdash; book weeks ahead</li>
+      <li>Armando al Pantheon: OpenTable or phone &mdash; book weeks ahead</li>
+      <li>Gigi Rigolatto (if anniversary dinner): Orient Express La Minerva website</li>
+      <li>Terrazza Les Etoiles aperitivo: reservation required for 17:30-21:00 slot &middot; 45pp</li>
+      <li>Alexanderplatz Jazz Club: check August programme and reserve</li>
+      <li>Castel Sant Angelo: book online to skip August queues</li>
+      <li>Galleria Borghese (if Thursday afternoon): always timed entry, sells out</li>
+    </ul>
+  </div>
+
+  <div class="tcard">
+    <h3>Anniversary and birthday tips</h3>
+    <div class="thighlight">Tell every restaurant it is a special occasion when booking. Romans love anniversaries and birthdays &mdash; expect something extra.</div>
+    <ul>
+      <li>Trevi Fountain at 9pm &mdash; throw a coin together over your left shoulder with your right hand</li>
+      <li>Gigi Rigolatto rooftop &mdash; Pantheon dome lit up at night directly in front of you</li>
+      <li>Terrazza Les Etoiles aperitivo &mdash; St Peter's at sunset, two minutes from your hotel</li>
+      <li>Ponte Sant Angelo at dusk &mdash; Bernini angels leading to the lit Castel Sant Angelo, one of Rome's most romantic walks</li>
+      <li>Trastevere evening &mdash; medieval streets, ivy-covered walls, candlelit tables on cobblestones</li>
+      <li>A bottle of Prosecco from a supermarket (~8) for a private toast on your first night</li>
+    </ul>
+  </div>
+</div>
+</div>
+
+<!-- ===== NOTES PANEL ===== -->
+<div id="panel-notes" class="panel" style="display:none;">
+<div style="padding:14px;">
+  <div style="font-family:Cormorant Garamond,serif;font-size:18px;font-weight:600;color:var(--ink);margin-bottom:12px;">Booking references &amp; notes</div>
+  <div class="note-card"><div class="note-label">Colosseum booking ref</div><textarea class="notes-area" id="note-colosseum" placeholder="Paste your booking reference here..."></textarea></div>
+  <div class="note-card"><div class="note-label">Restaurant bookings</div><textarea class="notes-area" id="note-restaurants" placeholder="Restaurant name, date, time, ref..." style="min-height:120px;"></textarea></div>
+  <div class="note-card"><div class="note-label">Hotel confirmation</div><textarea class="notes-area" id="note-hotel" placeholder="Hotel confirmation number..."></textarea></div>
+  <div class="note-card"><div class="note-label">Flight details</div><textarea class="notes-area" id="note-flights" placeholder="Flight numbers, booking refs..."></textarea></div>
+  <div class="note-card"><div class="note-label">Other notes</div><textarea class="notes-area" id="note-other" placeholder="Anything else..." style="min-height:120px;"></textarea></div>
+  <div style="font-size:11px;color:var(--muted);text-align:center;margin-top:4px;">Notes are saved in your browser and persist between sessions</div>
+</div>
+</div>
+
+<div class="fixed-btm">
+  <button class="btn-p" onclick="openMaps('Via degli Scipioni 286 Rome Italy')">Hotel</button>
+  <button class="btn-s" onclick="openMaps('Farmacia Cola di Rienzo 213 Rome')">Pharmacy</button>
+  <button class="btn-s" onclick="showTab('notes')">Notes</button>
+  <button class="btn-s" onclick="window.print()">Print</button>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+var saved = {};
+
+function showTab(t) {
+  var tabs = ["overview","itinerary","places","budget","tips","notes"];
+  for (var i = 0; i < tabs.length; i++) {
+    var p = document.getElementById("panel-" + tabs[i]);
+    var n = document.querySelectorAll(".ntab")[i];
+    if (p) p.style.display = (tabs[i] === t) ? "block" : "none";
+    if (n) n.classList.toggle("active", tabs[i] === t);
+  }
+  if (t === "overview") renderOverview();
+  if (t === "notes") loadNotes();
+}
+
+function toggleDetail(card) {
+  var d = card.querySelector(".idetail");
+  var c = card.querySelector(".chev");
+  if (!d) return;
+  var isOpen = d.classList.contains("open");
+  var all = document.querySelectorAll(".idetail.open");
+  for (var i = 0; i < all.length; i++) {
+    all[i].classList.remove("open");
+    var cv = all[i].closest(".ic").querySelector(".chev");
+    if (cv) cv.textContent = ">";
+  }
+  if (!isOpen) { d.classList.add("open"); if (c) c.textContent = "<"; }
+}
+
+function toggleChoice(opt) {
+  var block = opt.closest(".cblock");
+  var id = block.dataset.id;
+  var d = opt.querySelector(".co-detail");
+  if (!d) return;
+  var isOpen = d.classList.contains("open");
+  var all = block.querySelectorAll(".co-detail.open");
+  for (var i = 0; i < all.length; i++) all[i].classList.remove("open");
+  var allOpts = block.querySelectorAll(".copt");
+  for (var i = 0; i < allOpts.length; i++) allOpts[i].classList.remove("selected");
+  if (!isOpen) {
+    d.classList.add("open");
+    opt.classList.add("selected");
+    if (id) { var nm = opt.querySelector(".co-name"); saved[id] = nm ? nm.textContent : ""; updateBadge(); }
+  } else {
+    if (id) { delete saved[id]; updateBadge(); }
+  }
+}
+
+function updateBadge() {
+  var n = Object.keys(saved).length;
+  var el = document.getElementById("saved-badge");
+  if (el) el.textContent = n > 0 ? n + " choices saved" : "";
+}
+
+function filterPlaces(cat) {
+  var items = document.querySelectorAll(".pm");
+  for (var i = 0; i < items.length; i++) {
+    items[i].style.display = (cat === "all" || items[i].dataset.cat === cat) ? "block" : "none";
+  }
+  var btns = document.querySelectorAll(".fbtn");
+  for (var i = 0; i < btns.length; i++) btns[i].classList.toggle("active", btns[i].dataset.cat === cat);
+  var titles = document.querySelectorAll("#panel-places .pg-title");
+  for (var i = 0; i < titles.length; i++) {
+    var next = titles[i].nextElementSibling;
+    var visible = false;
+    while (next && next.classList.contains("pgrid")) {
+      var pms = next.querySelectorAll(".pm");
+      for (var j = 0; j < pms.length; j++) { if (pms[j].style.display !== "none") visible = true; }
+      next = next.nextElementSibling;
+    }
+    titles[i].style.display = visible ? "" : "none";
+  }
+}
+
+function openMaps(q) {
+  var url = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(q);
+  var t = document.getElementById("toast");
+  if (t) {
+    t.innerHTML = "<a href=\"" + url + "\" target=\"_blank\" style=\"color:#ffd;text-decoration:underline;\">Open in Google Maps</a>";
+    t.classList.add("show");
+    setTimeout(function() { t.classList.remove("show"); t.innerHTML = ""; }, 4000);
+  }
+}
+
+function calcBudget() {
+  var ppEl = document.getElementById("bpp");
+  var dinnerEl = document.getElementById("bdinner");
+  var museumEl = document.getElementById("bmuseum");
+  var borgheseEl = document.getElementById("bborghese");
+  if (!ppEl) return;
+  var pp = parseInt(ppEl.value) || 2;
+  var dinner = dinnerEl ? dinnerEl.value : "mid";
+  var museum = museumEl ? museumEl.checked : false;
+  var borghese = borgheseEl ? borgheseEl.checked : false;
+  var dc = {budget: 30, mid: 60, splurge: 110};
+  var dinnerCost = dc[dinner] || 60;
+  var eu = "EUR";
+  var items = [
+    {cat:"Transport", name:"Airport transfers x2 (Leonardo Express)", pp:14, days:2, show:true},
+    {cat:"Transport", name:"3-day transit pass", pp:12, days:1, show:true},
+    {cat:"Sightseeing", name:"Colosseum arena floor or underground", pp:22, days:1, show:true},
+    {cat:"Sightseeing", name:"Castel Sant Angelo", pp:16, days:1, show:true},
+    {cat:"Sightseeing", name:"Vatican Museums (if booked)", pp:20, days:1, show:museum},
+    {cat:"Sightseeing", name:"Galleria Borghese (if booked)", pp:30, days:1, show:borghese},
+    {cat:"Food", name:"Breakfasts at bar (3 mornings)", pp:4, days:3, show:true},
+    {cat:"Food", name:"Street food lunches (3 days)", pp:15, days:3, show:true},
+    {cat:"Food", name:"Dinners (3 evenings)", pp:dinnerCost, days:3, show:true},
+    {cat:"Food", name:"Gelato, coffees, snacks daily", pp:12, days:3, show:true},
+    {cat:"Drinks", name:"Aperitivo x1 Terrazza Les Etoiles", pp:45, days:1, show:true},
+    {cat:"Drinks", name:"Evening drinks 2 nights", pp:25, days:2, show:true}
+  ];
+  var rows = document.getElementById("budget-rows");
+  var totalEl = document.getElementById("budget-total");
+  var totalppEl = document.getElementById("budget-totalpp");
+  var ppValEl = document.getElementById("bpp-val");
+  if (ppValEl) ppValEl.textContent = pp + (pp === 1 ? " person" : " people");
+  if (!rows) return;
+  var sum = 0;
+  var html = "";
+  var lastCat = "";
+  for (var i = 0; i < items.length; i++) {
+    var item = items[i];
+    if (!item.show) continue;
+    var cost = item.pp * item.days * pp;
+    sum += cost;
+    if (item.cat !== lastCat) {
+      html += "<tr><td colspan=\"3\" style=\"padding:8px 12px 4px;font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);background:var(--cream);\">" + item.cat + "</td></tr>";
+      lastCat = item.cat;
+    }
+    html += "<tr style=\"border-bottom:.5px solid var(--stone);\"><td style=\"padding:7px 12px;font-size:12px;\">" + item.name + "</td><td style=\"padding:7px 8px;font-size:11px;color:var(--muted);text-align:center;\">" + item.pp + " pp</td><td style=\"padding:7px 12px;font-size:12px;font-weight:500;text-align:right;\">" + cost + "</td></tr>";
+  }
+  rows.innerHTML = html;
+  if (totalEl) totalEl.textContent = sum;
+  if (totalppEl) totalppEl.textContent = Math.round(sum / pp) + " pp";
+}
+
+function renderOverview() {
+  var el = document.getElementById("overview-content");
+  if (!el || el.dataset.built) return;
+  el.dataset.built = "1";
+  var days = [
+    {date:"Tue 19 Aug", badge:"Arrival", color:"#1e8449", items:[
+      {time:"16:35", name:"Depart Manchester"},
+      {time:"20:20", name:"Land Rome Fiumicino"},
+      {time:"~22:00", name:"Check in Via degli Scipioni"},
+      {time:"Late", name:"Welcome drink - Sorpasso or Passaguai"}
+    ]},
+    {date:"Wed 20 Aug", badge:"Day 2", color:"#1a6faa", items:[
+      {time:"8:00", name:"Quick breakfast - local bar"},
+      {time:"9:00", name:"Vatican and St Peter's Basilica"},
+      {time:"~11:00", name:"Optional: Castel Sant Angelo"},
+      {time:"~12:00", name:"Lunch - Bonci, Lumiere or Banchina 63"},
+      {time:"12:30", name:"Siesta - 2 hrs at hotel"},
+      {time:"14:30", name:"Monti district wander"},
+      {time:"19:00", name:"Piazza Navona then Pantheon"},
+      {time:"~20:00", name:"Dinner - Armando, Gigi, Roscioli or Borromini"},
+      {time:"21:00", name:"Trevi Fountain"},
+      {time:"Late", name:"Optional: Alexanderplatz Jazz"}
+    ]},
+    {date:"Thu 21 Aug", badge:"Day 3", color:"#c0392b", items:[
+      {time:"7:45", name:"Leave hotel for Colosseum"},
+      {time:"8:30", name:"Colosseum - Arena Floor or Underground"},
+      {time:"10:30", name:"Roman Forum and Palatine Hill"},
+      {time:"~12:00", name:"Lunch - street food or Monti piazza"},
+      {time:"12:30", name:"Siesta - 2 hrs at hotel"},
+      {time:"14:30", name:"Trastevere, Spanish Steps or Aperitivo"},
+      {time:"19:30", name:"Anniversary dinner - Gigi, Zuma or Borromini"}
+    ]},
+    {date:"Fri 22 Aug", badge:"Departure", color:"#7a6f63", items:[
+      {time:"9:00", name:"Final Roman breakfast"},
+      {time:"~10:00", name:"Last browse - Said, Pompi, Vinaio"},
+      {time:"12:30", name:"Leave hotel - Metro to Termini"},
+      {time:"12:50", name:"Leonardo Express to Fiumicino"},
+      {time:"15:25", name:"Depart Rome FCO"},
+      {time:"17:15", name:"Land Manchester"}
+    ]}
+  ];
+  var html = "";
+  for (var d = 0; d < days.length; d++) {
+    var day = days[d];
+    html += "<div style=\"margin-bottom:14px;\"><div style=\"display:flex;align-items:center;gap:8px;margin-bottom:6px;\"><div style=\"background:" + day.color + ";color:#fff;border-radius:6px;padding:3px 9px;font-size:11px;font-weight:500;\">" + day.badge + "</div><div style=\"font-family:Cormorant Garamond,serif;font-size:15px;font-style:italic;color:var(--ink);\">" + day.date + "</div></div>";
+    html += "<div style=\"background:var(--white);border-radius:10px;border:.5px solid rgba(26,21,16,.1);overflow:hidden;\">";
+    for (var i = 0; i < day.items.length; i++) {
+      var item = day.items[i];
+      var border = i < day.items.length - 1 ? "border-bottom:.5px solid var(--stone);" : "";
+      html += "<div style=\"display:flex;align-items:center;gap:8px;padding:7px 12px;" + border + "\"><div style=\"font-size:10px;color:var(--terra);font-weight:500;width:36px;flex-shrink:0;\">" + item.time + "</div><div style=\"font-size:12px;color:var(--ink);\">" + item.name + "</div></div>";
+    }
+    html += "</div></div>";
+  }
+  el.innerHTML = html;
+}
+
+function loadNotes() {
+  var fields = ["colosseum","restaurants","hotel","flights","other"];
+  for (var i = 0; i < fields.length; i++) {
+    var el = document.getElementById("note-" + fields[i]);
+    if (el) {
+      try { el.value = localStorage.getItem("roma_note_" + fields[i]) || ""; } catch(e) {}
+      el.addEventListener("input", (function(f){ return function(){ try { localStorage.setItem("roma_note_" + f, this.value); } catch(e) {} }; })(fields[i]));
+    }
+  }
+}
+
+function showToast(m) {
+  var t = document.getElementById("toast");
+  if (!t) return;
+  t.textContent = m;
+  t.classList.add("show");
+  setTimeout(function() { t.classList.remove("show"); }, 2500);
+}
+
+function init() {
+  var blocks = document.querySelectorAll(".cblock");
+  for (var i = 0; i < blocks.length; i++) {
+    if (!blocks[i].dataset.id) blocks[i].dataset.id = "cb" + i;
+  }
+  renderOverview();
+  calcBudget();
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", init);
+} else {
+  init();
+}
+</script>
+</body>
+</html>
