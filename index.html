@@ -174,6 +174,7 @@ body{font-family:"DM Sans",sans-serif;background:var(--cream);color:var(--ink);}
     <div class="ntab" onclick="showTab('places')">Places</div>
     <div class="ntab" onclick="showTab('budget')">Budget</div>
     <div class="ntab" onclick="showTab('tips')">Tips</div>
+    <div class="ntab" onclick="showTab('notes')">Notes</div>
   </div>
 </div>
 
@@ -197,6 +198,21 @@ body{font-family:"DM Sans",sans-serif;background:var(--cream);color:var(--ink);}
       <div style="display:flex;justify-content:space-between;"><span style="color:var(--muted);">Weather forecast</span><span><a href="https://www.bbc.co.uk/weather/3169070" target="_blank" style="color:var(--terra);">BBC Rome forecast</a></span></div>
     </div>
   </div>
+  <div style="margin:0 14px 10px;background:var(--white);border-radius:10px;border:.5px solid rgba(26,21,16,.1);padding:12px 14px;">
+    <div id="countdown-display" style="text-align:center;"></div>
+  </div>
+  <div style="margin:0 14px 10px;background:var(--white);border-radius:10px;border:.5px solid rgba(26,21,16,.1);padding:12px 14px;">
+    <div style="font-size:11px;font-weight:500;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;">Quick currency reference</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px 12px;font-size:12px;">
+      <div style="color:var(--muted);">5 EUR</div><div style="font-weight:500;">~ &pound;4.25</div>
+      <div style="color:var(--muted);">10 EUR</div><div style="font-weight:500;">~ &pound;8.50</div>
+      <div style="color:var(--muted);">20 EUR</div><div style="font-weight:500;">~ &pound;17</div>
+      <div style="color:var(--muted);">50 EUR</div><div style="font-weight:500;">~ &pound;42.50</div>
+      <div style="color:var(--muted);">100 EUR</div><div style="font-weight:500;">~ &pound;85</div>
+      <div style="color:var(--muted);">200 EUR</div><div style="font-weight:500;">~ &pound;170</div>
+    </div>
+    <div style="font-size:10px;color:var(--muted);margin-top:6px;">Based on approx &pound;1 = &euro;1.18. Check live rate before travel.</div>
+  </div>
   <div style="padding:0 14px 14px;display:flex;gap:8px;">
     <button class="btn-p" onclick="showTab('itinerary')">Full itinerary</button>
     <button class="btn-s" onclick="showTab('budget')">Budget planner</button>
@@ -217,7 +233,7 @@ body{font-family:"DM Sans",sans-serif;background:var(--cream);color:var(--ink);}
 
 <!-- TUE 19 -->
 <div class="day-section">
-<div class="day-hdr"><div><h2>Tuesday 19 August</h2><div class="dsub">Arrival day &middot; Evening only</div></div><div class="dbadge">Day 1</div></div>
+<div class="day-hdr"><div><h2>Wednesday 19 August</h2><div class="dsub">Arrival day &middot; Evening only</div></div><div class="dbadge">Wed 19 Aug</div></div>
 <div class="items">
   <div class="ic" onclick="toggleDetail(this)">
     <div class="ic-inner"><div class="stripe" style="background:var(--hotel)"></div><div class="iicon">&#9992;</div>
@@ -260,7 +276,7 @@ body{font-family:"DM Sans",sans-serif;background:var(--cream);color:var(--ink);}
 
 <!-- WED 20 -->
 <div class="day-section">
-<div class="day-hdr"><div><h2>Wednesday 20 August</h2><div class="dsub">Vatican 9am sharp &middot; Siesta &middot; Navona to Trevi evening</div></div><div class="dbadge">Day 2</div></div>
+<div class="day-hdr"><div><h2>Thursday 20 August</h2><div class="dsub">Vatican 9am sharp &middot; Siesta &middot; Navona to Trevi evening</div></div><div class="dbadge">Thu 20 Aug</div></div>
 <div class="alert-blue" style="margin-top:8px;">
   <div class="alert-blue-title">Set an alarm &mdash; leave hotel by 8:30am</div>
   <div class="alert-blue-body">Quick breakfast first, then 10 min walk to the Vatican. Aim to be at St Peter's Square by 9:00am before queues build and heat peaks. <strong>Dress code enforced:</strong> shoulders and knees must be covered at the entrance &mdash; carry your scarf.</div>
@@ -311,7 +327,7 @@ body{font-family:"DM Sans",sans-serif;background:var(--cream);color:var(--ink);}
     <div class="ic-inner"><div class="stripe" style="background:var(--visit)"></div><div class="iicon">&#9962;</div>
     <div class="ibody"><div class="itime">9:00am sharp</div><div class="iname">Vatican &amp; St Peter's Basilica</div><div class="idesc">Piazza San Pietro &middot; 10 min walk from hotel</div><div class="itags"><span class="tag t-free">Free entry to basilica</span><span class="tag t-book">Vatican Museums: pre-book</span><span class="tag t-walk">Basilica 7am-7pm &middot; Museums 9am-6pm (last entry 4pm)</span></div></div>
     <div class="iact"><span class="chev">&#8250;</span></div></div>
-    <div class="idetail"><div class="dnote">9am is the right call &mdash; queues build dramatically from 10am and the heat becomes brutal by midday. The basilica is free to enter. Dome climb (6-8) is best done first thing while it is cooler. Vatican Museums need separate timed tickets booked weeks ahead. Allow 1.5-2 hrs. <strong>Dress code strictly enforced</strong> &mdash; shoulders and knees covered or you will be turned away at the gate.</div></div>
+    <div class="idetail"><div class="dnote">9am is the right call &mdash; queues build dramatically from 10am and the heat becomes brutal by midday. The basilica is free to enter. Dome climb (6-8) is best done first thing while it is cooler. Vatican Museums need separate timed tickets booked weeks ahead. Allow 1.5-2 hrs. <strong>Dress code strictly enforced</strong> &mdash; shoulders and knees covered or you will be turned away at the gate.<br><br><strong>Photo tip:</strong> The classic St Peter's Square colonnade shot works best from the centre of the piazza in the morning when the light hits the basilica facade directly. For the dome, walk around to Via della Conciliazione for a straight-on perspective. Ponte Sant'Angelo at golden hour with the dome in the background is one of Rome's finest shots.</div></div>
   </div>
 </div>
 <div class="cblock">
@@ -364,7 +380,43 @@ body{font-family:"DM Sans",sans-serif;background:var(--cream);color:var(--ink);}
   </div>
 </div>
 <div class="cblock">
-  <div class="chdr">Wednesday aperitivo &mdash; 6:00-7:30pm before dinner <span>Pick one</span></div>
+  <div class="chdr">Thursday afternoon alternatives <span>No reservation needed</span></div>
+  <div class="copt" onclick="toggleChoice(this)">
+    <div class="co-top"><div class="co-name">Palazzo Altemps</div><div class="co-badge co-new">Hidden gem</div></div>
+    <div class="co-meta">Piazza di Sant'Apollinare, 46 &middot; 3 min from Navona &middot; Tue-Sun 9am-7:45pm &middot; <strong style="color:var(--rec);">£</strong> ~€10 &middot; No booking needed</div>
+    <div class="co-detail">A 15th-century palazzo housing Greek and Roman statuary, Egyptian artefacts, and a breathtakingly frescoed Renaissance loggia. One ticket covers Palazzo Massimo, Palazzo Altemps and the Baths of Diocletian. Three minutes from Piazza Navona, almost no crowds, genuinely beautiful. A perfect quiet afternoon option before your evening at Terrazza Borromini.</div>
+  </div>
+  <div class="copt" onclick="toggleChoice(this)">
+    <div class="co-top"><div class="co-name">Galleria Spada &amp; the Borromini Illusion</div><div class="co-badge co-new">Unmissable</div></div>
+    <div class="co-meta">Piazza Capo di Ferro, 13 &middot; Near Campo de'Fiori &middot; Tue-Sun 8:30am-7:30pm &middot; <strong style="color:var(--rec);">£</strong> ~€6 &middot; No booking needed</div>
+    <div class="co-detail">The highlight is Borromini's forced perspective optical illusion in the courtyard &mdash; a colonnade that appears to be 40 metres long but is actually only 8 metres. A genuine jaw-drop moment. The gallery also holds Cardinal Spada's collection of Baroque masterpieces. ~20 min walk from Navona through Campo de'Fiori. A real gem away from tourist crowds and only €6.</div>
+  </div>
+  <div class="copt" onclick="toggleChoice(this)">
+    <div class="co-top"><div class="co-name">Church of Gesu</div><div class="co-badge co-new">Free &middot; Worth 20 min</div></div>
+    <div class="co-meta">Piazza del Gesu &middot; Near Pantheon &middot; Daily 7am-12:30pm &amp; 4pm-7:45pm &middot; Free</div>
+    <div class="co-detail">The mother church of the Jesuit order &mdash; extraordinary illusionistic ceiling fresco by Giovanni Battista Gaulli (the Triumph of the Name of Jesus) that appears to burst out of the ceiling into three dimensions. One of the great Baroque interiors in Rome. Free to enter, 10 min walk from Navona, 20 minutes is enough. The kind of place most visitors walk past without knowing what is inside.</div>
+  </div>
+</div>
+<div class="cblock">
+  <div class="cblock">
+  <div class="chdr">Thursday afternoon choices <span>No reservation needed</span></div>
+  <div class="copt" onclick="toggleChoice(this)">
+    <div class="co-top"><div class="co-name">Palazzo Altemps</div><div class="co-badge co-new">Hidden gem</div></div>
+    <div class="co-meta">Piazza di Sant'Apollinare, 46 &middot; 3 min from Navona &middot; Tue-Sun 9am-7:45pm &middot; <strong style="color:var(--rec);">£</strong> ~€10 &middot; No booking needed</div>
+    <div class="co-detail">A 15th-century palazzo housing Greek and Roman statuary, Egyptian artefacts, and a breathtakingly frescoed Renaissance loggia. One ticket covers Palazzo Massimo, Palazzo Altemps and the Baths of Diocletian. Three minutes from Piazza Navona, almost no crowds, genuinely beautiful. A perfect quiet afternoon option before your evening at Terrazza Borromini.</div>
+  </div>
+  <div class="copt" onclick="toggleChoice(this)">
+    <div class="co-top"><div class="co-name">Galleria Spada &amp; the Borromini Illusion</div><div class="co-badge co-new">Unmissable trick</div></div>
+    <div class="co-meta">Piazza Capo di Ferro, 13 &middot; Near Campo de'Fiori &middot; Tue-Sun 8:30am-7:30pm &middot; <strong style="color:var(--rec);">£</strong> ~€6 &middot; No booking needed</div>
+    <div class="co-detail">The highlight is Borromini's forced perspective optical illusion in the courtyard &mdash; a colonnade that appears 40 metres long but is actually only 8 metres. A genuine jaw-drop moment. The gallery also holds Cardinal Spada's collection of Baroque masterpieces. About 20 min walk from Navona through Campo de'Fiori. A real gem away from tourist crowds and only €6.</div>
+  </div>
+  <div class="copt" onclick="toggleChoice(this)">
+    <div class="co-top"><div class="co-name">Church of Gesu</div><div class="co-badge co-new">Free &middot; 20 min</div></div>
+    <div class="co-meta">Piazza del Gesu &middot; Near Pantheon &middot; Daily 7am-12:30pm &amp; 4pm-7:45pm &middot; Free &middot; No booking needed</div>
+    <div class="co-detail">The mother church of the Jesuit order &mdash; extraordinary illusionistic ceiling fresco (the Triumph of the Name of Jesus) that appears to burst into three dimensions. One of the great Baroque interiors in Rome. Free to enter, 10 min walk from Navona, 20 minutes is enough. The kind of place most visitors walk past without knowing what is inside.</div>
+  </div>
+</div>
+<div class="chdr">Wednesday aperitivo &mdash; 6:00-7:30pm before dinner <span>Pick one</span></div>
   <div class="copt" onclick="toggleChoice(this)">
     <div class="co-top"><div class="co-name">Salotto 42</div><div class="co-badge co-new">Best near Pantheon</div></div>
     <div class="co-meta">Piazza di Pietra, 42 &middot; 2 min from Pantheon &middot; Daily 10am-2am &middot; <strong style="color:var(--rec);">££</strong> cocktails ~€12-15</div>
@@ -384,6 +436,11 @@ body{font-family:"DM Sans",sans-serif;background:var(--cream);color:var(--ink);}
     <div class="co-top"><div class="co-name">Freni e Frizioni &mdash; if heading to Trastevere first</div><div class="co-badge co-new">Best aperitivo in Rome</div></div>
     <div class="co-meta">Via del Politeama, 4 &middot; Trastevere &middot; Daily 6:30pm-2am &middot; <strong style="color:var(--rec);">£</strong> cocktail + unlimited buffet ~€10-12</div>
     <div class="co-detail">Consistently rated the best aperitivo in Rome. A former mechanic's workshop in Trastevere with a massive outdoor terrace that fills up with Romans every evening. Buy one drink (~€10) and get access to an unlimited vegetarian buffet &mdash; couscous, pasta, hummus, salads, bread. Creative cocktail list named after bands. Arrive at 7pm sharp for first dibs on the buffet before the crowds descend. You will likely not be hungry enough for dinner afterwards &mdash; perfect if you want to skip a sit-down meal and go straight to Navona and Trevi. No reservations, first come first served.</div>
+  </div>
+  <div class="copt" onclick="toggleChoice(this)">
+    <div class="co-top"><div class="co-name">I Pizzicaroli</div><div class="co-badge co-new">Hidden gem &middot; Near Pantheon</div></div>
+    <div class="co-meta">Via della Fossa, 9 &middot; 2 min from Pantheon &middot; Daily 11:30am-11pm &middot; <strong style="color:var(--rec);">£</strong> spritz ~€6 &middot; boards ~€15-20 &middot; No booking needed</div>
+    <div class="co-detail">Not strictly an aperitivo bar but works brilliantly as one. A tiny deli-bar tucked just off Campo de'Fiori with about 20 seats, Italian slogans all over the walls and staff who sing while they work. Order a spritz (€6) and a sharing board of bruschetta, cured meats and cheeses &mdash; the pesto bruschetta and prosciutto with honey are exceptional. Rated 4.7 on Tripadvisor with nearly 2,000 reviews. One reviewer visited on their birthday and described it as one of their best experiences in Rome. No reservations, just turn up. Locals and visitors mixed, completely unpretentious. The kind of place you stumble into and stay for two hours.</div>
   </div>
 </div>
 
@@ -420,14 +477,14 @@ body{font-family:"DM Sans",sans-serif;background:var(--cream);color:var(--ink);}
     <div class="ic-inner"><div class="stripe" style="background:var(--visit)"></div><div class="iicon">&#9906;</div>
     <div class="ibody"><div class="itime">19:00 evening stroll</div><div class="iname">Piazza Navona to Pantheon</div><div class="idesc">~30 min from hotel by bus or taxi &middot; 5 min walk between them</div><div class="itags"><span class="tag t-free">Free to enter piazza</span><span class="tag t-walk">Bus 40/64 from Lungotevere or taxi ~€12</span><span class="tag t-tip">Pantheon closes 7pm &middot; visit before dinner</span></div></div>
     <div class="iact"><span class="chev">&#8250;</span></div></div>
-    <div class="idetail"><div class="dnote">From your hotel: Bus 40 or 64 from Lungotevere Castello (5 min walk from hotel) towards the centre, or a taxi (~€12, ~15 min). Alternatively the 40-minute walk along the Tiber is lovely in the evening. Piazza Navona is Baroque at its best &mdash; Bernini's Fountain of the Four Rivers is extraordinary. The walk to the Pantheon takes just 5 minutes through atmospheric narrow streets.<br><br><strong>Gelato stops on this route:</strong> <strong>Gelateria del Teatro</strong> (Via dei Coronari, 65 &mdash; 3 min from Navona, arguably Rome's best artisan gelato, try rosemary and lemon or dark chocolate) &middot; <strong>Frigidarium</strong> (Via del Governo Vecchio, 112 &mdash; 5 min from Navona, signature move is having your gelato dipped in melted chocolate that hardens into a shell) &middot; <strong>Giolitti</strong> (Via degli Uffici del Vicario, 40 &mdash; between Pantheon and Navona, historic institution since 1900).</div></div>
+    <div class="idetail"><div class="dnote">From your hotel: Bus 40 or 64 from Lungotevere Castello (5 min walk from hotel) towards the centre, or a taxi (~€12, ~15 min). Alternatively the 40-minute walk along the Tiber is lovely in the evening. Piazza Navona is Baroque at its best &mdash; Bernini's Fountain of the Four Rivers is extraordinary. The walk to the Pantheon takes just 5 minutes through atmospheric narrow streets.<br><br><strong>Photo tip:</strong> Frame Bernini's fountain with Sant'Agnese in Agony church behind it. Golden hour 7-8pm is ideal. From Terrazza Borromini (where you are dining tonight) you get one of the best elevated shots of Navona in Rome.<br><br><strong>Photo tip:</strong> Piazza Navona: frame the Fountain of the Four Rivers with Sant'Agnese in Agony church behind it. The Borromini terrace (where you are dining) is one of the best elevated shots of Navona. Pantheon: stand in Piazza della Rotonda and include the Egyptian obelisk in the foreground. Best light is early morning &mdash; by evening the facade is in shadow but atmospheric.<br><br><strong>Gelato stops on this route:</strong> <strong>Gelateria del Teatro</strong> (Via dei Coronari, 65 &mdash; 3 min from Navona, arguably Rome's best artisan gelato, try rosemary and lemon or dark chocolate) &middot; <strong>Frigidarium</strong> (Via del Governo Vecchio, 112 &mdash; 5 min from Navona, signature move is having your gelato dipped in melted chocolate that hardens into a shell) &middot; <strong>Giolitti</strong> (Via degli Uffici del Vicario, 40 &mdash; between Pantheon and Navona, historic institution since 1900).</div></div>
   </div>
   <div class="conn"><div class="cline"></div><div class="ctxt">~15 min walk to Trevi</div></div>
   <div class="ic" onclick="toggleDetail(this)">
     <div class="ic-inner"><div class="stripe" style="background:var(--visit)"></div><div class="iicon">&#128167;</div>
-    <div class="ibody"><div class="itime">~21:00</div><div class="iname">Trevi Fountain</div><div class="idesc">Piazza di Trevi &middot; ~15 min walk from Navona &middot; best after 9pm</div><div class="itags"><span class="tag t-eve">Evening magic</span><span class="tag t-tip">Throw your coin together</span></div></div>
+    <div class="ibody"><div class="itime">~22:00 after dinner</div><div class="iname">Trevi Fountain</div><div class="idesc">Piazza di Trevi &middot; ~15 min walk from Terrazza Borromini &middot; best after 9pm</div><div class="itags"><span class="tag t-eve">Evening magic</span><span class="tag t-tip">Throw your coin together</span></div></div>
     <div class="iact"><span class="chev">&#8250;</span></div></div>
-    <div class="idetail"><div class="dnote">From Piazza Navona: a straightforward 15-minute walk east through the historic centre &mdash; Via della Scrofa, then Via di Sant'Agostino, following signs for Fontana di Trevi. 9pm is significantly better than daytime &mdash; dramatically lit, crowds much thinner, genuinely romantic. Throw a coin over your left shoulder with your right hand &mdash; legend guarantees a return to Rome. Do it together.<br><br><strong>Near Trevi for a sweet finish:</strong> <strong>Pompi</strong> (Via della Croce, 82 &mdash; Rome's tiramisu institution, 5 flavours, get the classic or pistachio) &middot; <strong>Gelateria Della Palma</strong> (Via della Maddalena, 23 &mdash; 150+ flavours near the Pantheon, slightly touristy but genuinely good) &middot; <strong>L'Antica Birreria Peroni</strong> (Via San Marcello, 19 &mdash; 5 min from Trevi for a post-fountain beer instead).</div></div>
+    <div class="idetail"><div class="dnote">From Piazza Navona: a straightforward 15-minute walk east through the historic centre &mdash; Via della Scrofa, then Via di Sant'Agostino, following signs for Fontana di Trevi. 9pm is significantly better than daytime &mdash; dramatically lit, crowds much thinner, genuinely romantic. Throw a coin over your left shoulder with your right hand &mdash; legend guarantees a return to Rome. Do it together.<br><br><strong>Photo tip:</strong> Arrive from Via della Stamperia for an elevated view from above the fountain. For the classic straight-on shot, the steps directly opposite give the best angle. At 10pm the fountain is lit but crowds have thinned &mdash; ideal for a clean photo. Shoot wide to capture both the fountain and the surrounding palazzo.<br><br><strong>Near Trevi for a sweet finish:</strong> <strong>Pompi</strong> (Via della Croce, 82 &mdash; Rome's tiramisu institution, 5 flavours, get the classic or pistachio) &middot; <strong>Gelateria Della Palma</strong> (Via della Maddalena, 23 &mdash; 150+ flavours near the Pantheon, slightly touristy but genuinely good) &middot; <strong>L'Antica Birreria Peroni</strong> (Via San Marcello, 19 &mdash; 5 min from Trevi for a post-fountain beer instead).</div></div>
   </div>
 </div>
 <div class="cblock">
@@ -447,12 +504,28 @@ body{font-family:"DM Sans",sans-serif;background:var(--cream);color:var(--ink);}
     <div class="co-meta">Rome &middot; Independent bar</div>
     <div class="co-detail">Your researched pick &mdash; worth confirming hours and location in advance for a late drink option after Trevi.</div>
   </div>
+  <div class="copt" onclick="toggleChoice(this)">
+    <div class="co-top"><div class="co-name">Jerry Thomas Speakeasy &mdash; Rome's best cocktail bar</div><div class="co-badge co-new">World's 50 Best Bars</div></div>
+    <div class="co-meta">Vicolo Cellini, 30 &middot; Near Navona &middot; ~15 min walk from Trevi &middot; Opens 10pm &middot; <strong style="color:var(--terra);">££</strong> cocktails ~€10-15 &middot; Must book + get password</div>
+    <div class="co-detail"><strong>How to get in &mdash; step by step:</strong><br>
+<strong>Step 1:</strong> Go to <em>thejerrythomasproject.it/en</em> and find the hidden question on the homepage &mdash; answering it reveals the daily password. Do this the day before or on the day.<br>
+<strong>Step 2:</strong> Reserve by phone &mdash; number on their website. Reservations taken <strong>2pm-6pm only</strong>, Tuesday to Saturday.<br>
+<strong>Step 3:</strong> Find the black door at <strong>Vicolo Cellini, 30</strong> &mdash; small brass plaque, a doorbell, an owl knocker and the number 30. Ring the bell.<br>
+<strong>Step 4:</strong> A 1920s-costumed doorman opens a hatch. Give name and password. Pay <strong>&euro;5 one-off membership fee</strong>.<br>
+<strong>Step 5:</strong> You have exactly <strong>75 minutes</strong> &mdash; enforced. Order immediately. <strong>Cash only. No vodka</strong> served (house rules). Smoking permitted.<br><br>
+Dim amber light, velvet textures, jazz playing, Prohibition-era decor. ~35 seats. Cocktails themed around Forgotten Spirits &mdash; lost recipes and rare ingredients. Manhattans, Sazeracs, Old Fashioneds. Opens 10pm &mdash; perfect after Trevi.</div>
+  </div>
+  <div class="copt" onclick="toggleChoice(this)">
+    <div class="co-top"><div class="co-name">L'Antica Birreria Peroni &mdash; historic post-Trevi drink</div><div class="co-badge co-new">Since 1906 &middot; Affordable</div></div>
+    <div class="co-meta">Via di San Marcello, 19 &middot; 5 min walk from Trevi &middot; Mon-Sat 12pm-midnight &middot; Closed Sun &middot; <strong style="color:var(--rec);">£</strong> beer ~€6-8 &middot; food ~€20-25pp</div>
+    <div class="co-detail">Established in 1906 in a former firehouse &mdash; a genuine hybrid of German beer hall and Italian trattoria. Just 5 minutes from Trevi Fountain, making it perfect for a post-fountain drink. Unique Peroni beers on tap not available elsewhere: standard Nastro Azzurro, the double-malt Gran Riserva, and the 100% Italian malt Gran Riserva Rossa. Food is Roman and Bavarian mixed &mdash; carbonara alongside goulash and their famous kilometre sausage. Budget-friendly and consistently atmospheric. A genuine Rome institution that most tourists walk straight past.</div>
+  </div>
 </div>
 </div>
 
 <!-- THU 21 -->
 <div class="day-section">
-<div class="day-hdr"><div><h2>Thursday 21 August</h2><div class="dsub">Colosseum 8:30am sharp &middot; Siesta &middot; Anniversary dinner</div></div><div class="dbadge">Day 3</div></div>
+<div class="day-hdr"><div><h2>Friday 21 August</h2><div class="dsub">Colosseum 8:30am sharp &middot; Siesta &middot; Anniversary dinner</div></div><div class="dbadge">Fri 21 Aug</div></div>
 <div class="alert-blue" style="margin-top:8px;">
   <div class="alert-blue-title">Set an alarm &mdash; leave hotel by 7:45am</div>
   <div class="alert-blue-body">Quick breakfast first (Sciascia Caffe or Cremilla are both nearby and fast), then Metro from Lepanto (Line A) to Termini, change to Line B to Colosseo &mdash; about 15 mins total. You need to be at the Colosseum entrance by 8:30am. It fills up fast and August heat makes late morning visits punishing. <strong>Dress code:</strong> shoulders covered recommended &mdash; and wear comfortable shoes, the site involves a lot of uneven ancient ground.</div>
@@ -462,7 +535,7 @@ body{font-family:"DM Sans",sans-serif;background:var(--cream);color:var(--ink);}
     <div class="ic-inner"><div class="stripe" style="background:var(--visit)"></div><div class="iicon">&#127965;</div>
     <div class="ibody"><div class="itime">8:30am &middot; pre-booked</div><div class="iname">Colosseum &mdash; Arena Floor or Underground</div><div class="idesc">Piazza del Colosseo &middot; Metro: Line A then B at Termini</div><div class="itags"><span class="tag t-book">Book NOW at coopculture.it</span><span class="tag t-tip">Includes Forum and Palatine Hill</span><span class="tag t-walk">Open 8:30am &middot; closes 7:15pm &middot; last entry 6:15pm</span></div></div>
     <div class="iact"><span class="chev">&#8250;</span></div></div>
-    <div class="idetail"><div class="dnote">Getting there: Metro Line A from Lepanto (your station, 3 min walk from hotel) to Termini (~15 min), then change to Line B and one stop to Colosseo (~3 min). Total journey about 20-25 min including platform changes. Leave hotel by 7:45am to be comfortable. The underground hypogeum experience shows the tunnels where gladiators and animals were held before battle &mdash; far more memorable than the standard visit. <strong>Book at coopculture.it &mdash; sells out weeks ahead in August.</strong></div></div>
+    <div class="idetail"><div class="dnote">Getting there: Metro Line A from Lepanto (your station, 3 min walk from hotel) to Termini (~15 min), then change to Line B and one stop to Colosseo (~3 min). Total journey about 20-25 min including platform changes. Leave hotel by 7:45am to be comfortable. The underground hypogeum experience shows the tunnels where gladiators and animals were held before battle &mdash; far more memorable than the standard visit. <strong>Book at coopculture.it &mdash; sells out weeks ahead in August.</strong><br><br><strong>Photo tip:</strong> Best exterior shot from Via Nicola Salvi &mdash; a raised road giving an elevated view above the tourist crowds. For scale, stand close on the west side and shoot upward. Stone turns amber under floodlights at night &mdash; the walk past after The Court drinks will be spectacular.</div></div>
   </div>
   <div class="conn"><div class="cline"></div><div class="ctxt">Included with ticket</div></div>
   <div class="ic" onclick="toggleDetail(this)">
@@ -538,7 +611,7 @@ body{font-family:"DM Sans",sans-serif;background:var(--cream);color:var(--ink);}
   </div>
 </div>
 <div class="cblock">
-  <div class="chdr">Anniversary &amp; birthday dinner <span>Pick one</span></div>
+  <div class="chdr">Thursday evening dinner <span>Booked: Terrazza Borromini</span></div>
   <div class="copt" onclick="toggleChoice(this)">
     <div class="co-top"><div class="co-name">Gigi Rigolatto</div><div class="co-badge co-splurge">Top recommendation</div></div>
     <div class="co-meta">Piazza della Minerva, 69 &middot; Near Pantheon &middot; Dinner from 7pm &middot; Book well in advance</div>
@@ -549,10 +622,10 @@ body{font-family:"DM Sans",sans-serif;background:var(--cream);color:var(--ink);}
     <div class="co-meta">Via della Fontanella di Borghese, 48 &middot; Near Pantheon &middot; ~25 min from hotel by bus or taxi &middot; <strong style="color:var(--terra);">£££ premium</strong> ~90-130pp</div>
     <div class="co-detail">High-end Japanese restaurant &mdash; robata grill, izakaya sharing plates, excellent cocktails. Smart and atmospheric. A glamorous non-Italian anniversary option. Book well ahead for August.</div>
   </div>
-  <div class="copt" onclick="toggleChoice(this)">
-    <div class="co-top"><div class="co-name">Terrazza Borromini</div><div class="co-badge co-new">Recommended</div></div>
-    <div class="co-meta">Above Piazza Navona &middot; Upscale &middot; Reserve ahead</div>
-    <div class="co-detail">Sitting above Piazza Navona at night with Bernini's fountains below and Rome's rooftops stretching out is genuinely breathtaking. Save this for the birthday dinner if you did not use it on Wednesday.</div>
+  <div class="copt selected" onclick="toggleChoice(this)">
+    <div class="co-top"><div class="co-name">Terrazza Borromini &mdash; BOOKED &#10003;</div><div class="co-badge" style="background:#e0f4f0;color:#0e6655;">Confirmed</div></div>
+    <div class="co-meta">Via di Santa Maria dell'Anima, 30 &middot; Behind Piazza Navona &middot; <strong style="color:var(--rec);">Cocktails 6th floor 8:00pm &rarr; Dinner 4th floor 8:45pm</strong></div>
+    <div class="co-detail">Entrance on the street immediately behind Piazza Navona &mdash; less than 2 minutes from the piazza. Your evening plan: arrive Navona by 7pm, enjoy the atmosphere and aperitivo if you wish, then head to Terrazza Borromini for 8pm. Cocktails on the 6th floor rooftop with Bernini's fountains directly below you. Move down to the 4th floor restaurant at 8:45pm. After dinner walk to Trevi Fountain (~15 min) at around 10:30pm. <strong>Already booked &mdash; just show up. Confirmation details in Notes tab.</strong><br><br><strong>Dress code:</strong> Smart casual. No shorts, no flip flops. A nice shirt and trousers, or summer dress. The 6th floor rooftop is open air &mdash; a light layer for the evening breeze is useful.</div>
   </div>
   <div class="copt" onclick="toggleChoice(this)">
     <div class="co-top"><div class="co-name">Osteria Faruso</div><div class="co-badge co-yours">Your pick</div></div>
@@ -560,16 +633,16 @@ body{font-family:"DM Sans",sans-serif;background:var(--cream);color:var(--ink);}
     <div class="co-detail">A more relaxed, neighbourhood trattoria option if you want something unpretentious and local for the birthday dinner rather than a rooftop splurge.</div>
   </div>
   <div class="copt" onclick="toggleChoice(this)">
-    <div class="co-top"><div class="co-name">Cecilia Santa Cucina</div><div class="co-badge co-new">Highly recommended</div></div>
-    <div class="co-meta">Via dei Vascellari, 48 &middot; Trastevere &middot; 30 min from hotel (Bus 23 or walk over Ponte Sisto) &middot; Tue-Fri 6pm-11pm &middot; Sat-Sun from 12:30pm &middot; Closed Mon &middot; <strong style="color:var(--rec);">££ mid-range</strong> ~30-40pp &middot; excellent value</div>
-    <div class="co-detail">A hidden gem in Trastevere that reviewers consistently call the best meal of their entire Italy trip. Modern Roman cuisine with a contemporary twist &mdash; open kitchen so you can watch the chefs work. The carbonara is described as the best in Rome. Suckling pig porchetta, fresh pastas, handpicked wine pairings. Five types of homemade bread. Google rating 4.7 and multiple reviewers went back a second time before leaving Rome. Around 30-40pp &mdash; exceptional value for the quality. Perfect for a birthday dinner in Trastevere before or after an evening wander through the neighbourhood. Book ahead.</div>
+    <div class="co-top"><div class="co-name">Cecilia Santa Cucina &mdash; BOOKED &#10003;</div><div class="co-badge" style="background:#e0f4f0;color:#0e6655;">Confirmed 8:30pm</div></div>
+    <div class="co-meta">Via dei Vascellari, 48 &middot; Trastevere &middot; 30 min from hotel (Bus 23 or walk over Ponte Sisto) &middot; <strong style="color:var(--rec);">Friday 21 Aug &middot; 8:30pm &middot; ££ ~30-40pp</strong></div>
+    <div class="co-detail"><strong>Dress code:</strong> Casual &mdash; Trastevere is relaxed. Clean and presentable is fine. No need to dress up.<br><br>A hidden gem in Trastevere that reviewers consistently call the best meal of their entire Italy trip. Modern Roman cuisine with a contemporary twist &mdash; open kitchen so you can watch the chefs work. The carbonara is described as the best in Rome. Suckling pig porchetta, fresh pastas, handpicked wine pairings. Five types of homemade bread. Google rating 4.7 and multiple reviewers went back a second time before leaving Rome. Around 30-40pp &mdash; exceptional value for the quality. Perfect for a birthday dinner in Trastevere before or after an evening wander through the neighbourhood. Book ahead.</div>
   </div>
 </div>
 </div>
 
 <!-- FRI 22 -->
 <div class="day-section">
-<div class="day-hdr"><div><h2>Friday 22 August</h2><div class="dsub">Morning only &middot; Leave hotel by 12:30</div></div><div class="dbadge">Day 4</div></div>
+<div class="day-hdr"><div><h2>Saturday 22 August</h2><div class="dsub">Morning only &middot; Leave hotel by 12:30 &mdash; flight is at 15:25</div></div><div class="dbadge">Sat 22 Aug</div></div>
 <div class="alert-red" style="margin-top:8px;">
   <div class="alert-red-title">Airport transfer chain &mdash; do not leave this late</div>
   <div class="alert-red-body">
@@ -685,6 +758,10 @@ body{font-family:"DM Sans",sans-serif;background:var(--cream);color:var(--ink);}
     <div class="pm" data-cat="street" onclick="openMaps('Bona Pizzeria Rome')"><div class="pm-cat"><span class="pm-dot" style="background:var(--street)"></span><span style="color:var(--street)">Pizza</span></div><div class="pm-name">Bona Pizzeria</div><div class="pm-addr">Rome</div></div>
     <div class="pm" data-cat="street" onclick="openMaps('Limone Rome')"><div class="pm-cat"><span class="pm-dot" style="background:var(--street)"></span><span style="color:var(--street)">Street food</span></div><div class="pm-name">Limone</div><div class="pm-addr">Rome</div></div>
     <div class="pm" data-cat="rec" onclick="openMaps('Sant Eustachio il Caffe Rome')"><div class="pm-cat"><span class="pm-dot" style="background:var(--rec)"></span><span style="color:var(--rec)">Espresso &middot; New</span></div><div class="pm-name">Sant Eustachio il Caffe</div><div class="pm-addr">Piazza Sant Eustachio &middot; best espresso</div></div>
+    <div class="pm" data-cat="rec" onclick="openMaps('Mr 100 Tiramisu Trastevere Rome')"><div class="pm-cat"><span class="pm-dot" style="background:var(--rec)"></span><span style="color:var(--rec)">Tiramisu &middot; Street cart</span></div><div class="pm-name">Mr 100 Tiramisu</div><div class="pm-addr">Trastevere &middot; ~€4-5 &middot; Cash only</div></div>
+    <div class="pm" data-cat="rec" onclick="openMaps('I Pizzicaroli Via della Fossa 9 Rome')"><div class="pm-cat"><span class="pm-dot" style="background:var(--rec)"></span><span style="color:var(--rec)">Deli bar &middot; Near Pantheon</span></div><div class="pm-name">I Pizzicaroli</div><div class="pm-addr">Via della Fossa, 9 &middot; 2 min from Pantheon &middot; Daily 11:30am-11pm</div></div>
+    <div class="pm" data-cat="rec" onclick="openMaps('Villa Farnesina Via della Lungara 230 Trastevere Rome')"><div class="pm-cat"><span class="pm-dot" style="background:var(--rec)"></span><span style="color:var(--rec)">Museum &middot; Raphael frescoes</span></div><div class="pm-name">Villa Farnesina</div><div class="pm-addr">Via della Lungara, 230 &middot; Trastevere &middot; ~€12</div></div>
+    <div class="pm" data-cat="rec" onclick="openMaps('Fontana Acqua Paola Gianicolo Rome')"><div class="pm-cat"><span class="pm-dot" style="background:var(--rec)"></span><span style="color:var(--rec)">Fountain &middot; Free &middot; Gianicolo</span></div><div class="pm-name">Fontana dell'Acqua Paola</div><div class="pm-addr">Gianicolo Hill &middot; 15 min walk from Trastevere</div></div>
   </div>
 </div>
 </div>
@@ -730,8 +807,8 @@ body{font-family:"DM Sans",sans-serif;background:var(--cream);color:var(--ink);}
 <!-- ===== TIPS ===== -->
 <div id="panel-tips" class="panel">
 <div class="tips">
-  <div class="flight-c"><div class="fi"><h3>Outbound &middot; Tue 19 Aug</h3><p>Manchester to Rome Fiumicino</p></div><div class="ft">16:35<small>lands 20:20</small></div></div>
-  <div class="flight-c" style="background:var(--ink);"><div class="fi"><h3>Return &middot; Fri 22 Aug</h3><p>Rome Fiumicino to Manchester</p></div><div class="ft">15:25<small>lands 17:15</small></div></div>
+  <div class="flight-c"><div class="fi"><h3>Outbound &middot; Wed 19 Aug</h3><p>Manchester to Rome Fiumicino &middot; Wed 19 Aug</p></div><div class="ft">16:35<small>lands 20:20</small></div></div>
+  <div class="flight-c" style="background:var(--ink);"><div class="fi"><h3>Return &middot; Sat 22 Aug &middot; Sat 22 Aug</h3><p>Rome Fiumicino to Manchester &middot; Sat 22 Aug</p></div><div class="ft">15:25<small>lands 17:15</small></div></div>
 
   <div class="tcard">
     <h3>The heat &mdash; what to expect</h3>
@@ -756,6 +833,65 @@ body{font-family:"DM Sans",sans-serif;background:var(--cream);color:var(--ink);}
       <li>In 32 degree heat: drink far more water than you think you need</li>
       <li>Cold granita di caffe (coffee ice slush) from a bar is a brilliant mid-afternoon reviver &mdash; very Roman, very cheap</li>
     </ul>
+  </div>
+
+  <div class="tcard">
+    <h3>Save this app for offline use</h3>
+    <p>This is a single HTML file &mdash; everything works without internet once loaded. To have it available offline in Rome:</p>
+    <ul style="margin-top:6px;">
+      <li><strong>iPhone:</strong> Open in Safari &rarr; tap the Share icon &rarr; "Add to Home Screen". It will appear as an app icon and open full-screen offline.</li>
+      <li><strong>Android:</strong> Open in Chrome &rarr; tap the three dots menu &rarr; "Add to Home Screen". Same result.</li>
+      <li><strong>Both phones:</strong> Alternatively, download the HTML file to your Files app and open it directly from there without any internet connection.</li>
+      <li><strong>Share with your partner:</strong> Send the HTML file via WhatsApp, email or AirDrop. They can save it to their phone the same way.</li>
+    </ul>
+    <div style="font-size:11px;color:var(--muted);margin-top:8px;">Map links will still open Google Maps when you have signal. All text, itinerary, tips, budget and notes work completely offline.</div>
+  </div>
+
+  <div class="tcard">
+    <h3>Gelato &mdash; how to spot the good stuff</h3>
+    <div class="thighlight">Most gelato near tourist sites is factory-made. Signs of genuine artisan gelato: natural colours (pistachio should be grey-green not neon green), covered containers, and a short ingredient list.</div>
+    <ul>
+      <li><strong>Otaleg</strong> (Via di San Cosimato, 14a &middot; Trastevere) &mdash; widely considered the best in Rome right now. Creative seasonal. Try whatever fresh fruit is available.</li>
+      <li><strong>Gelateria del Teatro</strong> (Via dei Coronari, 65 &middot; 3 min from Navona) &mdash; arguably the best artisan gelateria. Rosemary and lemon, dark chocolate, pear and ginger.</li>
+      <li><strong>Gelateria dei Gracchi</strong> (Via dei Gracchi, 272 &middot; 5 min from hotel) &mdash; dark chocolate with orange, zabaione, real pistachio in natural grey-brown.</li>
+      <li><strong>Frigidarium</strong> (Via del Governo Vecchio, 112 &middot; near Navona) &mdash; dip your gelato in melted chocolate that hardens into a shell.</li>
+      <li><strong>Fatamorgana</strong> (Via Leonina, 10 &middot; Monti) &mdash; 100% gluten-free, creative. Black tea and smoke, rose petal and almond.</li>
+      <li><strong>Fiordiluna</strong> (Via della Lungaretta, 96 &middot; Trastevere) &mdash; creamy mascarpone with chocolate and biscuit, superb pistachio.</li>
+      <li><strong>Giolitti</strong> (Via degli Uffici del Vicario, 40 &middot; near Pantheon) &mdash; historic institution since 1900. Try the sour cherry.</li>
+      <li><strong>Mr 100 Tiramisu</strong> (Trastevere &middot; street cart near Piazza Santa Maria) &mdash; individual tiramisu cups ~€4-5. Perfect after Cecilia Santa Cucina.</li>
+    </ul>
+    <p style="font-size:12px;color:var(--muted);margin-top:8px;">Cone or cup with 2 flavours typically €3-5. Ask for a taste (un assaggio) before committing.</p>
+  </div>
+
+  <div class="tcard">
+    <h3>Photography tips &mdash; getting the best shots</h3>
+    <div class="thighlight">Golden hour in August is around 7-8pm. Blue hour just after sunset (~8:30pm) gives the most dramatic lit-monument shots. Your Thursday evening route (Navona then Trevi) is perfectly timed for both.</div>
+    <table style="width:100%;font-size:12px;border-collapse:collapse;margin-top:4px;">
+      <tr style="border-bottom:.5px solid var(--stone);"><td style="padding:6px 0;font-weight:500;color:var(--ink);width:40%;">Colosseum</td><td style="padding:6px 0;color:var(--muted);">Via Nicola Salvi for elevated exterior. 8:30am inside with early light. Floodlit from The Court at night.</td></tr>
+      <tr style="border-bottom:.5px solid var(--stone);"><td style="padding:6px 0;font-weight:500;color:var(--ink);">Vatican</td><td style="padding:6px 0;color:var(--muted);">Morning light hits facade directly. Ponte Sant'Angelo with dome behind at golden hour.</td></tr>
+      <tr style="border-bottom:.5px solid var(--stone);"><td style="padding:6px 0;font-weight:500;color:var(--ink);">Pantheon</td><td style="padding:6px 0;color:var(--muted);">Include obelisk in foreground. Oculus inside best at midday. Early morning for no crowds.</td></tr>
+      <tr style="border-bottom:.5px solid var(--stone);"><td style="padding:6px 0;font-weight:500;color:var(--ink);">Piazza Navona</td><td style="padding:6px 0;color:var(--muted);">Frame Bernini's fountain with Sant'Agnese church behind. Golden hour 7-8pm. Or from Terrazza Borromini above tonight.</td></tr>
+      <tr style="border-bottom:.5px solid var(--stone);"><td style="padding:6px 0;font-weight:500;color:var(--ink);">Trevi Fountain</td><td style="padding:6px 0;color:var(--muted);">Approach from Via della Stamperia for elevated angle. After 10pm: lit, quieter, beautiful.</td></tr>
+      <tr style="border-bottom:.5px solid var(--stone);"><td style="padding:6px 0;font-weight:500;color:var(--ink);">Trastevere</td><td style="padding:6px 0;color:var(--muted);">Cobbled streets around Piazza Santa Maria in late afternoon. Via della Scala for ivy-draped alley shots.</td></tr>
+      <tr style="border-bottom:.5px solid var(--stone);"><td style="padding:6px 0;font-weight:500;color:var(--ink);">Castel Sant'Angelo</td><td style="padding:6px 0;color:var(--muted);">From Ponte Sant'Angelo with castle behind. Beautifully lit at night.</td></tr>
+      <tr style="border-bottom:.5px solid var(--stone);"><td style="padding:6px 0;font-weight:500;color:var(--ink);">Acqua Paola fountain</td><td style="padding:6px 0;color:var(--muted);">The terrace alongside gives Rome's best panorama. Late afternoon for warm light on the white marble.</td></tr>
+      <tr><td style="padding:6px 0;font-weight:500;color:var(--ink);">Hidden gem shot</td><td style="padding:6px 0;color:var(--muted);">Knights of Malta keyhole, Aventine Hill &mdash; perfectly framed St Peter's dome through a keyhole. 2 minutes, no queue.</td></tr>
+    </table>
+    <div style="font-size:11px;color:var(--muted);margin-top:8px;">Phone tip: Portrait mode for food and gelato. Standard wide for architecture &mdash; step back further than you think. Night mode for Trevi and Colosseum after dark.</div>
+  </div>
+
+  <div class="tcard">
+    <h3>Aperitivo &mdash; Rome's evening ritual</h3>
+    <p>Aperitivo is one of the best things about Italy. Between roughly 6pm and 9pm, bars offer a drink which comes with free food &mdash; ranging from a small bowl of olives up to an unlimited buffet. You are paying for the drink, the food is the bonus.</p>
+    <div class="thighlight">A spritz (Aperol or Campari, prosecco, soda) is the classic &mdash; refreshing, low alcohol, and deeply Roman. A negroni (gin, Campari, sweet vermouth) is the more sophisticated alternative.</div>
+    <ul style="margin-top:8px;">
+      <li><strong>Freni e Frizioni</strong> (Trastevere) &mdash; consistently rated Rome's best aperitivo. One drink (~€10) unlocks an unlimited vegetarian buffet. Arrive at 7pm. No reservations.</li>
+      <li><strong>Salotto 42</strong> (Piazza di Pietra, near Pantheon) &mdash; the most stylish option near your Thursday evening route. Facing the Temple of Hadrian columns. Cocktails ~€12-15.</li>
+      <li><strong>Bar del Fico</strong> (Via della Pace, behind Navona) &mdash; most affordable near your Wednesday evening route. Spritz ~€7 with snacks. Fig tree courtyard.</li>
+      <li><strong>I Pizzicaroli</strong> (Via della Fossa, 9 &middot; 2 min from Pantheon) &mdash; sharing boards of bruschetta, cured meats and cheeses with a spritz. Spritz €6, boards €15-20. No booking, just turn up.</li>
+      <li><strong>Terrazza Les Etoiles</strong> (Prati, 2 min from hotel) &mdash; rooftop option. Fixed €45pp includes cocktail and finger food. St Peter's dome in front of you.</li>
+    </ul>
+    <p style="font-size:12px;color:var(--muted);margin-top:8px;">Aperitivo runs 6-9pm. Arrive early for the best buffet selection. Romans eat dinner at 8-9pm, so aperitivo bridges the gap.</p>
   </div>
 
   <div class="tcard">
@@ -868,6 +1004,10 @@ body{font-family:"DM Sans",sans-serif;background:var(--cream);color:var(--ink);}
       <div><em style="color:var(--terra);">Ho una prenotazione</em><br><span style="color:var(--muted);">I have a reservation</span></div>
       <div><em style="color:var(--terra);">E il nostro anniversario</em><br><span style="color:var(--muted);">It's our anniversary</span></div>
       <div><em style="color:var(--terra);">Chiuso per ferie</em><br><span style="color:var(--muted);">Closed for holidays (sign)</span></div>
+      <div><em style="color:var(--terra);">Buon compleanno!</em><br><span style="color:var(--muted);">Happy birthday!</span></div>
+      <div><em style="color:var(--terra);">Buon anniversario!</em><br><span style="color:var(--muted);">Happy anniversary!</span></div>
+      <div><em style="color:var(--terra);">Un tavolo per due</em><br><span style="color:var(--muted);">A table for two</span></div>
+      <div><em style="color:var(--terra);">Posso avere il menu?</em><br><span style="color:var(--muted);">Can I have the menu?</span></div>
     </div>
   </div>
 
@@ -1068,7 +1208,7 @@ function renderOverview() {
       {time:"~22:00", name:"Check in Via degli Scipioni"},
       {time:"Late", name:"Welcome drink - Sorpasso or Passaguai"}
     ]},
-    {date:"Wed 20 Aug", badge:"Day 2", color:"#1a6faa", items:[
+    {date:"Thu 20 Aug", badge:"Day 2", color:"#1a6faa", items:[
       {time:"8:00", name:"Quick breakfast - local bar"},
       {time:"9:00", name:"Vatican and St Peter's Basilica"},
       {time:"~11:00", name:"Optional: Castel Sant Angelo"},
@@ -1080,16 +1220,16 @@ function renderOverview() {
       {time:"21:00", name:"Trevi Fountain"},
       {time:"Late", name:"Optional: Alexanderplatz Jazz"}
     ]},
-    {date:"Thu 21 Aug", badge:"Day 3", color:"#c0392b", items:[
+    {date:"Fri 21 Aug", badge:"Day 3", color:"#c0392b", items:[
       {time:"7:45", name:"Leave hotel for Colosseum"},
       {time:"8:30", name:"Colosseum - Arena Floor or Underground"},
       {time:"10:30", name:"Roman Forum and Palatine Hill"},
       {time:"~12:00", name:"Lunch - street food or Monti piazza"},
       {time:"12:30", name:"Siesta - 2 hrs at hotel"},
       {time:"14:30", name:"Trastevere, Spanish Steps or Aperitivo"},
-      {time:"19:30", name:"Anniversary dinner - Gigi, Zuma or Borromini"}
+      {time:"20:00", name:"Terrazza Borromini - cocktails 6th floor, dinner 4th floor"}
     ]},
-    {date:"Fri 22 Aug", badge:"Departure", color:"#7a6f63", items:[
+    {date:"Sat 22 Aug", badge:"Departure", color:"#7a6f63", items:[
       {time:"9:00", name:"Final Roman breakfast"},
       {time:"~10:00", name:"Last browse - Said, Pompi, Vinaio"},
       {time:"12:30", name:"Leave hotel - Metro to Termini"},
@@ -1139,6 +1279,32 @@ function init() {
   }
   renderOverview();
   calcBudget();
+  renderCountdown();
+}
+
+function renderCountdown(){
+  var el = document.getElementById("countdown-display");
+  if(!el) return;
+  var trip = new Date("2025-08-19T16:35:00");
+  var now = new Date();
+  var diff = trip - now;
+  if(diff <= 0){
+    el.innerHTML = "<div style=\"font-family:Cormorant Garamond,serif;font-size:20px;font-weight:600;color:var(--terra);\">You are in Rome!</div><div style=\"font-size:12px;color:var(--muted);margin-top:4px;\">Enjoy every moment. Buon viaggio!</div>";
+    return;
+  }
+  var days = Math.floor(diff / (1000*60*60*24));
+  var hours = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+  var mins = Math.floor((diff % (1000*60*60)) / (1000*60));
+  el.innerHTML = "<div style=\"font-size:11px;font-weight:500;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;\">Countdown to departure</div>"
+    + "<div style=\"display:flex;gap:12px;justify-content:center;\">"
+    + "<div style=\"text-align:center;\"><div style=\"font-family:Cormorant Garamond,serif;font-size:34px;font-weight:600;color:var(--terra);line-height:1;\">" + days + "</div><div style=\"font-size:10px;color:var(--muted);margin-top:2px;\">days</div></div>"
+    + "<div style=\"font-size:28px;color:var(--stone);font-weight:300;line-height:1.1;\">:</div>"
+    + "<div style=\"text-align:center;\"><div style=\"font-family:Cormorant Garamond,serif;font-size:34px;font-weight:600;color:var(--terra);line-height:1;\">" + hours + "</div><div style=\"font-size:10px;color:var(--muted);margin-top:2px;\">hrs</div></div>"
+    + "<div style=\"font-size:28px;color:var(--stone);font-weight:300;line-height:1.1;\">:</div>"
+    + "<div style=\"text-align:center;\"><div style=\"font-family:Cormorant Garamond,serif;font-size:34px;font-weight:600;color:var(--terra);line-height:1;\">" + mins + "</div><div style=\"font-size:10px;color:var(--muted);margin-top:2px;\">mins</div></div>"
+    + "</div>"
+    + "<div style=\"font-size:11px;color:var(--muted);margin-top:8px;text-align:center;\">Wed 19 Aug &middot; MAN 16:35 &rarr; FCO 20:20</div>";
+  setTimeout(renderCountdown, 60000);
 }
 
 if (document.readyState === "loading") {
