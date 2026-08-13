@@ -175,6 +175,7 @@ body{font-family:"DM Sans",sans-serif;background:var(--cream);color:var(--ink);}
     <div class="ntab" onclick="showTab('budget')">Budget</div>
     <div class="ntab" onclick="showTab('tips')">Tips</div>
     <div class="ntab" onclick="showTab('notes')">Notes</div>
+    <div class="ntab" onclick="showTab('map')">Map</div>
   </div>
 </div>
 
@@ -1497,6 +1498,42 @@ Dim amber light, velvet textures, jazz, Prohibition-era decor. ~35 seats. Cockta
 </div>
 </div>
 
+<!-- ===== MAP ===== -->
+<div id="panel-map" class="panel" style="display:none;padding:0;overflow:hidden;">
+  <div style="padding:10px 14px 8px;background:var(--card);border-bottom:1px solid var(--stone);position:sticky;top:0;z-index:10;">
+    <div style="font-size:10px;font-weight:700;color:var(--terra);text-transform:uppercase;letter-spacing:.08em;margin-bottom:7px;">Filter</div>
+    <div style="display:flex;flex-wrap:wrap;gap:5px;">
+      <button class="fbtn active" onclick="filterMap('all')" data-mf="all">All</button>
+      <button class="fbtn" onclick="filterMap('hotel')" data-mf="hotel">🏠 Base</button>
+      <button class="fbtn" onclick="filterMap('visit')" data-mf="visit">🏛 Sights</button>
+      <button class="fbtn" onclick="filterMap('eat')" data-mf="eat">🍽 Eat</button>
+      <button class="fbtn" onclick="filterMap('drink')" data-mf="drink">🍸 Drink</button>
+      <button class="fbtn" onclick="filterMap('coffee')" data-mf="coffee">☕ Coffee</button>
+      <button class="fbtn" onclick="filterMap('street')" data-mf="street">🥪 Street</button>
+      <button class="fbtn" onclick="filterMap('booked')" data-mf="booked">⭐ Booked</button>
+    </div>
+  </div>
+  <div style="position:relative;overflow:auto;-webkit-overflow-scrolling:touch;background:#e8f4f8;">
+    <canvas id="roma-canvas" width="680" height="560" style="display:block;cursor:pointer;min-width:340px;max-width:100%;touch-action:pan-x pan-y;"></canvas>
+  </div>
+  <div id="map-popup" style="display:none;position:fixed;bottom:76px;left:50%;transform:translateX(-50%);background:var(--card);border:1.5px solid var(--stone);border-radius:14px;padding:14px 16px;min-width:270px;max-width:90vw;box-shadow:0 8px 32px rgba(0,0,0,.22);z-index:9999;">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+      <div id="popup-name" style="font-family:Cormorant Garamond,serif;font-size:17px;font-weight:700;color:var(--ink);flex:1;padding-right:8px;"></div>
+      <button onclick="document.getElementById('map-popup').style.display='none'" style="background:none;border:none;font-size:22px;cursor:pointer;color:var(--muted);line-height:1;padding:0;flex-shrink:0;">×</button>
+    </div>
+    <div id="popup-cat" style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin:3px 0 4px;"></div>
+    <div id="popup-note" style="font-size:12px;color:var(--ink);line-height:1.55;margin-bottom:10px;"></div>
+    <a id="popup-maps" href="#" target="_blank" style="display:inline-block;background:var(--terra);color:#fff;font-size:12px;font-weight:600;padding:7px 16px;border-radius:20px;text-decoration:none;">Open in Maps →</a>
+  </div>
+</div>
+
+
+
+
+
+
+
+
 <div class="fixed-btm">
   <button class="btn-p" onclick="openMaps('Via degli Scipioni 286 Rome Italy')">Hotel</button>
   <button class="btn-s" onclick="openMaps('Farmacia Cola di Rienzo 213 Rome')">Pharmacy</button>
@@ -1509,7 +1546,7 @@ Dim amber light, velvet textures, jazz, Prohibition-era decor. ~35 seats. Cockta
 var saved = {};
 
 function showTab(t) {
-  var tabs = ["overview","itinerary","places","budget","tips","notes"];
+  var tabs = ["overview","itinerary","places","budget","tips","notes","map"];
   for (var i = 0; i < tabs.length; i++) {
     var p = document.getElementById("panel-" + tabs[i]);
     var n = document.querySelectorAll(".ntab")[i];
@@ -1922,6 +1959,254 @@ if (document.readyState === "loading") {
 } else {
   init();
 }
+</script>
+
+
+<script>
+var MARKERS=[
+  {name:"Villino Scipioni",cat:"hotel",booked:true,x:289.5,y:115.2,lat:41.9113,lng:12.4698,color:"#c9a227",icon:"★",note:"Your hotel · Via degli Scipioni 286 · 4 min to Lepanto Metro"},
+  {name:"Colosseum",cat:"visit",booked:true,x:507.1,y:342.5,lat:41.8902,lng:12.4922,color:"#c9a227",icon:"★",note:"BOOKED Thu 9:45am · Arena floor + underground"},
+  {name:"Roman Forum",cat:"visit",booked:false,x:440.1,y:317.7,lat:41.8925,lng:12.4853,color:"#2e7d32",icon:"S",note:"Included with Colosseum ticket"},
+  {name:"Vatican Museums",cat:"visit",booked:true,x:132.1,y:166.9,lat:41.9065,lng:12.4536,color:"#c9a227",icon:"★",note:"BOOKED Fri 17:30 · Code: 2L2NFL1T0000003PQ"},
+  {name:"St Peter\'s Basilica",cat:"visit",booked:false,x:135.0,y:213.2,lat:41.9022,lng:12.4539,color:"#2e7d32",icon:"S",note:"Free · Dome climb €6-8 · Fri morning"},
+  {name:"Piazza Navona",cat:"visit",booked:false,x:321.5,y:245.5,lat:41.8992,lng:12.4731,color:"#2e7d32",icon:"S",note:"Best at 7pm golden hour · Bernini fountain"},
+  {name:"Pantheon",cat:"visit",booked:false,x:358.5,y:252.0,lat:41.8986,lng:12.4769,color:"#2e7d32",icon:"S",note:"Book timed entry · Near Tazza d\'Oro"},
+  {name:"Trevi Fountain",cat:"visit",booked:false,x:420.6,y:227.2,lat:41.9009,lng:12.4833,color:"#2e7d32",icon:"S",note:"Thu night ~10:30pm after Borromini dinner"},
+  {name:"Knights of Malta Keyhole",cat:"visit",booked:false,x:374.0,y:420.0,lat:41.883,lng:12.4785,color:"#2e7d32",icon:"S",note:"Thu morning · Taxi from Forum ~€6 · Free"},
+  {name:"Giardino degli Aranci",cat:"visit",booked:false,x:392.5,y:397.4,lat:41.8851,lng:12.4804,color:"#2e7d32",icon:"S",note:"5 min from keyhole · Orange garden + views"},
+  {name:"Gianicolo Hill",cat:"visit",booked:false,x:207.9,y:328.5,lat:41.8915,lng:12.4614,color:"#2e7d32",icon:"S",note:"Best panorama in Rome · Noon cannon · Fri"},
+  {name:"Castel Sant\'Angelo",cat:"visit",booked:false,x:255.5,y:203.5,lat:41.9031,lng:12.4663,color:"#2e7d32",icon:"S",note:"10 min walk from hotel · Book online"},
+  {name:"Ponte Sant\'Angelo",cat:"visit",booked:false,x:257.4,y:218.6,lat:41.9017,lng:12.4665,color:"#2e7d32",icon:"S",note:"8 min from hotel · Bernini angels · 8am"},
+  {name:"Villa Farnesina",cat:"visit",booked:false,x:257.4,y:310.2,lat:41.8932,lng:12.4665,color:"#2e7d32",icon:"S",note:"Raphael frescoes · Mon-Sat 9am-2pm · ~€12"},
+  {name:"Villa Borghese Lake",cat:"visit",booked:false,x:441.0,y:87.2,lat:41.9139,lng:12.4854,color:"#2e7d32",icon:"S",note:"Sat morning · Rowboat €3 · Metro to Spagna"},
+  {name:"Piazza del Popolo",cat:"visit",booked:false,x:351.7,y:118.5,lat:41.911,lng:12.4762,color:"#2e7d32",icon:"S",note:"Twin churches + obelisk · Thu Option C dawn"},
+  {name:"Mercato Testaccio",cat:"visit",booked:false,x:328.3,y:477.1,lat:41.8777,lng:12.4738,color:"#2e7d32",icon:"S",note:"Best food market · Thu lunch · 7am-3:30pm"},
+  {name:"Campo de\' Fiori",cat:"visit",booked:false,x:312.8,y:284.3,lat:41.8956,lng:12.4722,color:"#2e7d32",icon:"S",note:"Thu afternoon · Dar Filettaro nearby"},
+  {name:"Jewish Ghetto",cat:"visit",booked:false,x:357.5,y:309.1,lat:41.8933,lng:12.4768,color:"#2e7d32",icon:"S",note:"Thu afternoon · Portico d\'Ottavia · artichokes"},
+  {name:"Piazza Madonna dei Monti",cat:"visit",booked:false,x:477.0,y:287.5,lat:41.8953,lng:12.4891,color:"#2e7d32",icon:"S",note:"Locals + fountain steps from 7pm · Free"},
+  {name:"Terrazza Borromini",cat:"drink",booked:true,x:314.7,y:248.8,lat:41.8989,lng:12.4724,color:"#c9a227",icon:"★",note:"BOOKED Thu 8pm cocktails · 8:45pm dinner"},
+  {name:"Cecilia Santa Cucina",cat:"eat",booked:true,x:363.3,y:369.4,lat:41.8877,lng:12.4774,color:"#c9a227",icon:"★",note:"BOOKED Fri 8:30pm · Best carbonara in Rome"},
+  {name:"Drink Kong",cat:"drink",booked:false,x:551.8,y:337.1,lat:41.8907,lng:12.4968,color:"#7b1fa2",icon:"D",note:"World\'s 50 Best Bars #40 · Opens 6:30pm"},
+  {name:"Jerry Thomas Speakeasy",cat:"drink",booked:false,x:271.0,y:258.5,lat:41.898,lng:12.4679,color:"#7b1fa2",icon:"D",note:"Password from website · Opens 10pm · €5 entry"},
+  {name:"L\'Oratorio Trastevere",cat:"drink",booked:false,x:316.7,y:370.5,lat:41.8876,lng:12.4726,color:"#7b1fa2",icon:"D",note:"Hidden 1090 church courtyard · Fri pre-dinner"},
+  {name:"Magick Bar",cat:"drink",booked:false,x:293.4,y:150.8,lat:41.908,lng:12.4702,color:"#7b1fa2",icon:"D",note:"Tiber rooftop terrace · May-Sept 6pm-2am"},
+  {name:"Nite Kong",cat:"drink",booked:false,x:282.7,y:369.4,lat:41.8877,lng:12.4691,color:"#7b1fa2",icon:"D",note:"By Drink Kong creator · Fri post-Cecilia"},
+  {name:"Freni e Frizioni",cat:"drink",booked:false,x:297.3,y:364.0,lat:41.8882,lng:12.4706,color:"#7b1fa2",icon:"D",note:"Best aperitivo in Rome · €10 + buffet · Fri 7pm"},
+  {name:"Alexanderplatz Jazz",cat:"drink",booked:false,x:178.7,y:148.6,lat:41.9082,lng:12.4584,color:"#7b1fa2",icon:"D",note:"Rome\'s best jazz · 10 min from hotel · 9:45pm"},
+  {name:"Passaguai",cat:"drink",booked:false,x:243.8,y:155.1,lat:41.9076,lng:12.4651,color:"#7b1fa2",icon:"D",note:"Natural wine bar · 4 min from hotel"},
+  {name:"Bar Rosati",cat:"drink",booked:false,x:351.7,y:118.5,lat:41.911,lng:12.4762,color:"#7b1fa2",icon:"D",note:"Since 1922 · Outdoor obelisk views · Thu/Sat am"},
+  {name:"Salotto 42",cat:"drink",booked:false,x:390.5,y:252.0,lat:41.8986,lng:12.4802,color:"#7b1fa2",icon:"D",note:"Temple of Hadrian views · Thu evening"},
+  {name:"Vino e Vinili",cat:"drink",booked:false,x:307.9,y:282.2,lat:41.8958,lng:12.4717,color:"#7b1fa2",icon:"D",note:"Local wine bar · No reservation · Thu post-dinner"},
+  {name:"Bar San Callisto",cat:"drink",booked:false,x:291.4,y:359.7,lat:41.8886,lng:12.47,color:"#7b1fa2",icon:"D",note:"€2.50 Peroni · Where Romans drink · Fri night"},
+  {name:"Sciascia Caffe 1919",cat:"coffee",booked:false,x:265.2,y:134.6,lat:41.9095,lng:12.4673,color:"#5d4037",icon:"C",note:"Pistachio cornetto + in-house roast · Thu Option A"},
+  {name:"Sant\'Eustachio il Caffe",cat:"coffee",booked:false,x:343.9,y:255.2,lat:41.8983,lng:12.4754,color:"#5d4037",icon:"C",note:"Outdoor dome views · Rome\'s finest espresso"},
+  {name:"Tazza d\'Oro",cat:"coffee",booked:false,x:357.5,y:245.5,lat:41.8992,lng:12.4768,color:"#5d4037",icon:"C",note:"Granita al caffe con panna · Essential in August"},
+  {name:"Pergamino Caffe",cat:"coffee",booked:false,x:170.0,y:180.9,lat:41.9052,lng:12.4575,color:"#5d4037",icon:"C",note:"V60/Nitro · Best specialty coffee in Prati"},
+  {name:"Roscioli Caffe",cat:"coffee",booked:false,x:312.8,y:284.3,lat:41.8956,lng:12.4722,color:"#5d4037",icon:"C",note:"Pour-over + siphon · Maritozzi legendary"},
+  {name:"Neve di Latte",cat:"street",booked:false,x:273.0,y:88.3,lat:41.9138,lng:12.4681,color:"#f59e0b",icon:"F",note:"Best gelato in Rome · 10 min from hotel · local only"},
+  {name:"Bonci Pizzarium",cat:"street",booked:false,x:123.4,y:148.6,lat:41.9082,lng:12.4527,color:"#f59e0b",icon:"F",note:"Best pizza al taglio · Near Vatican · Fri lunch"},
+  {name:"Dar Filettaro",cat:"street",booked:false,x:308.9,y:289.7,lat:41.8951,lng:12.4718,color:"#f59e0b",icon:"F",note:"Battered salt cod since 1938 · €4 · Thu route"},
+  {name:"Supplizio",cat:"street",booked:false,x:307.0,y:287.5,lat:41.8953,lng:12.4716,color:"#f59e0b",icon:"F",note:"Gourmet suppli · Thu route near Campo"},
+  {name:"Mordi e Vai",cat:"street",booked:false,x:332.2,y:477.1,lat:41.8777,lng:12.4742,color:"#f59e0b",icon:"F",note:"Best panino in Rome · Testaccio Box 15 · Thu lunch"},
+  {name:"Trapizzino",cat:"street",booked:false,x:177.8,y:180.9,lat:41.9052,lng:12.4583,color:"#f59e0b",icon:"F",note:"Triangular pizza pocket · Fri lunch near Vatican"},
+  {name:"Gelateria del Teatro",cat:"street",booked:false,x:290.5,y:233.7,lat:41.9003,lng:12.4699,color:"#f59e0b",icon:"F",note:"Artisan gelato · Near Navona · rosemary/lemon"},
+  {name:"Mr 100 Tiramisu",cat:"street",booked:false,x:291.4,y:364.0,lat:41.8882,lng:12.47,color:"#f59e0b",icon:"F",note:"Street cart tiramisu ~€4-5 · Fri after Cecilia"},
+  {name:"Nonna Betta",cat:"eat",booked:false,x:360.4,y:309.1,lat:41.8933,lng:12.4771,color:"#b5451b",icon:"E",note:"Jewish-style fried artichoke · Thu afternoon"},
+  {name:"Armando al Pantheon",cat:"eat",booked:false,x:358.5,y:252.0,lat:41.8986,lng:12.4769,color:"#b5451b",icon:"E",note:"Since 1961 · Book far ahead · Thu contingency"},
+  {name:"Gigi Rigolatto",cat:"eat",booked:false,x:361.4,y:257.4,lat:41.8981,lng:12.4772,color:"#b5451b",icon:"E",note:"Rooftop above Pantheon · Anniversary alternative"},
+];
+
+
+var CAT_LABELS={hotel:"🏠 Base",visit:"🏛 Sight",eat:"🍽 Eat",drink:"🍸 Drink",coffee:"☕ Coffee",street:"🥪 Street food"};
+var activeFilter="all";
+var SCALE=1;
+
+function getCanvas(){return document.getElementById("roma-canvas");}
+function getCtx(){return getCanvas().getContext("2d");}
+
+function drawMap(){
+  var canvas=getCanvas();
+  var ctx=getCtx();
+  var dpr=window.devicePixelRatio||1;
+
+  // Scale canvas for device pixel ratio
+  var displayW=canvas.offsetWidth||680;
+  SCALE=displayW/680;
+  canvas.width=680*dpr*SCALE;
+  canvas.height=560*dpr*SCALE;
+  canvas.style.width=displayW+"px";
+  canvas.style.height=Math.round(560*SCALE)+"px";
+  ctx.scale(dpr*SCALE,dpr*SCALE);
+
+  // Background — light map colour
+  ctx.fillStyle="#e8f4f8";
+  ctx.fillRect(0,0,680,560);
+
+  // Draw simple street grid hints
+  ctx.strokeStyle="rgba(255,255,255,0.5)";
+  ctx.lineWidth=0.5;
+
+  // Tiber River — approximate path
+  ctx.beginPath();
+  ctx.strokeStyle="#a8cfe0";
+  ctx.lineWidth=7;
+  ctx.lineCap="round";
+  ctx.lineJoin="round";
+  // Tiber runs roughly north-south through west Rome
+  var tiber=[
+    [41.920,12.456],[41.914,12.466],[41.910,12.470],[41.906,12.466],
+    [41.903,12.464],[41.900,12.467],[41.897,12.466],[41.893,12.468],
+    [41.890,12.469],[41.886,12.472],[41.880,12.476],[41.875,12.478]
+  ];
+  ctx.beginPath();
+  tiber.forEach(function(p,i){
+    var x=(p[1]-12.440)/(12.510-12.440)*680;
+    var y=(1-(p[0]-41.870)/(41.922-41.870))*560;
+    if(i===0)ctx.moveTo(x,y); else ctx.lineTo(x,y);
+  });
+  ctx.stroke();
+
+  // Tiber label
+  ctx.fillStyle="#7fb3c8";
+  ctx.font="italic 10px DM Sans,sans-serif";
+  ctx.fillText("Tevere",155,220);
+
+  // North arrow
+  ctx.save();
+  ctx.fillStyle="var(--terra,#8b4513)";
+  ctx.font="bold 11px DM Sans,sans-serif";
+  ctx.fillText("N ↑",640,20);
+  ctx.restore();
+
+  // Scale bar hint
+  ctx.fillStyle="#666";
+  ctx.font="9px DM Sans,sans-serif";
+  ctx.fillText("← 1 km →",10,550);
+
+  // Area labels
+  var areas=[
+    ["Prati",41.910,12.466],["Trastevere",41.885,12.469],
+    ["Monti",41.893,12.496],["Testaccio",41.875,12.477],
+    ["Navona",41.899,12.473],["Vatican",41.904,12.450]
+  ];
+  ctx.fillStyle="rgba(80,60,40,0.45)";
+  ctx.font="italic 10px DM Sans,sans-serif";
+  areas.forEach(function(a){
+    var x=(a[2]-12.440)/(12.510-12.440)*680;
+    var y=(1-(a[1]-41.870)/(41.922-41.870))*560;
+    ctx.fillText(a[0],x-15,y);
+  });
+
+  // Draw markers
+  MARKERS.forEach(function(m){
+    var show=activeFilter==="all"||m.cat===activeFilter||(activeFilter==="booked"&&m.booked);
+    if(!show)return;
+    var r=m.booked?11:9;
+    // Shadow
+    ctx.shadowColor="rgba(0,0,0,0.25)";
+    ctx.shadowBlur=4;
+    ctx.shadowOffsetY=2;
+    // Circle
+    ctx.beginPath();
+    ctx.arc(m.x,m.y,r,0,Math.PI*2);
+    ctx.fillStyle=m.color;
+    ctx.fill();
+    ctx.shadowColor="transparent";
+    // Border
+    ctx.strokeStyle="#fff";
+    ctx.lineWidth=m.booked?2:1.5;
+    ctx.stroke();
+    // Icon
+    ctx.fillStyle="#fff";
+    ctx.font=(m.booked?"bold 9px":"8px")+" DM Sans,sans-serif";
+    ctx.textAlign="center";
+    ctx.textBaseline="middle";
+    ctx.fillText(m.icon,m.x,m.y+0.5);
+    ctx.textAlign="left";
+    ctx.textBaseline="alphabetic";
+  });
+
+  ctx.shadowColor="transparent";
+  ctx.shadowBlur=0;
+
+  // Legend
+  var legend=[
+    ["#1a2744","H","Hotel"],["#2e7d32","S","Sight"],["#b5451b","E","Eat"],
+    ["#7b1fa2","D","Drink"],["#5d4037","C","Coffee"],["#f59e0b","F","Street"],["#c9a227","★","Booked"]
+  ];
+  var lx=8,ly=12;
+  ctx.font="9px DM Sans,sans-serif";
+  legend.forEach(function(l,i){
+    var bx=lx+(i%4)*85, by=ly+Math.floor(i/4)*18;
+    ctx.beginPath();
+    ctx.arc(bx+5,by+4,5,0,Math.PI*2);
+    ctx.fillStyle=l[0];ctx.fill();
+    ctx.strokeStyle="#fff";ctx.lineWidth=1;ctx.stroke();
+    ctx.fillStyle="#333";
+    ctx.fillText(l[2],bx+13,by+9);
+  });
+}
+
+function hitTest(canvasX, canvasY){
+  var hit=null, bestDist=999;
+  MARKERS.forEach(function(m){
+    var show=activeFilter==="all"||m.cat===activeFilter||(activeFilter==="booked"&&m.booked);
+    if(!show)return;
+    var dx=m.x*SCALE-canvasX, dy=m.y*SCALE-canvasY;
+    var dist=Math.sqrt(dx*dx+dy*dy);
+    if(dist<18*SCALE&&dist<bestDist){bestDist=dist;hit=m;}
+  });
+  return hit;
+}
+
+function showMapPopup(m){
+  document.getElementById("popup-name").textContent=m.name;
+  var catEl=document.getElementById("popup-cat");
+  catEl.textContent=m.booked?"⭐ BOOKED · "+(CAT_LABELS[m.cat]||m.cat.toUpperCase()):CAT_LABELS[m.cat]||m.cat.toUpperCase();
+  catEl.style.color=m.color;
+  document.getElementById("popup-note").textContent=m.note;
+  document.getElementById("popup-maps").href="https://maps.google.com/?q="+encodeURIComponent(m.name+", Rome, Italy");
+  document.getElementById("map-popup").style.display="block";
+}
+
+function filterMap(cat){
+  document.querySelectorAll("[data-mf]").forEach(function(b){b.classList.toggle("active",b.dataset.mf===cat);});
+  activeFilter=cat;
+  document.getElementById("map-popup").style.display="none";
+  drawMap();
+}
+
+function initCanvasMap(){
+  var canvas=getCanvas();
+  if(!canvas)return;
+  drawMap();
+
+  // Touch/click handler
+  function handleTap(ex,ey){
+    var rect=canvas.getBoundingClientRect();
+    var cx=ex-rect.left, cy=ey-rect.top;
+    var hit=hitTest(cx,cy);
+    if(hit){showMapPopup(hit);}
+    else{document.getElementById("map-popup").style.display="none";}
+  }
+
+  canvas.addEventListener("click",function(e){handleTap(e.clientX,e.clientY);});
+  canvas.addEventListener("touchend",function(e){
+    if(e.changedTouches.length===1){
+      e.preventDefault();
+      handleTap(e.changedTouches[0].clientX,e.changedTouches[0].clientY);
+    }
+  },{passive:false});
+
+  window.addEventListener("resize",function(){if(activeFilter!==undefined)drawMap();});
+}
+
+// Override showTab to init map
+var _origShowTab2=showTab;
+showTab=function(id){
+  _origShowTab2(id);
+  if(id==="map"){setTimeout(initCanvasMap,100);}
+};
 </script>
 </body>
 </html<div class="copt" onclick="toggleChoice(this)">
